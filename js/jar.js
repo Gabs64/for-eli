@@ -168,24 +168,24 @@
         this.jarElement.classList.add("is-completed");
         if (this.statusTextElement) {
           this.statusTextElement.innerHTML = `
-            <span class="status-badge complete">All Notes Read ✨</span>
-            <p class="status-msg">${config.completion?.subtitle || "Tap jar to see summary"}</p>
+            <span class="status-badge complete">All Notes Read</span>
+            <p class="status-msg">${config.completion?.subtitle || "Tap the jar to look back at your notes"}</p>
           `;
         }
       } else if (state.isFinalUnlocked) {
         this.jarElement.classList.add("has-final-unlocked");
         if (this.statusTextElement) {
           this.statusTextElement.innerHTML = `
-            <span class="status-badge special-unlocked pulse-badge">✨ Final Note Ready ✨</span>
-            <p class="status-msg special-msg">${config.finalConfession?.unlockedMessage || "One last thing. Open this when you're ready."}</p>
+            <span class="status-badge special-unlocked pulse-badge">One Last Note</span>
+            <p class="status-msg special-msg">${config.finalConfession?.unlockedMessage || "There's one last note at the bottom. Open it whenever you're ready."}</p>
           `;
         }
       } else {
         const unopenedCount = window.StateManager.getUnopenedRegularNotes().length;
         if (this.statusTextElement) {
           this.statusTextElement.innerHTML = `
-            <p class="status-msg">${config.jarScreen?.tapInstruction || "Tap the jar to draw a note"}</p>
-            <span class="status-sub">${unopenedCount} regular ${unopenedCount === 1 ? "note" : "notes"} remaining</span>
+            <p class="status-msg">${config.jarScreen?.tapInstruction || "Tap the jar to pick a note"}</p>
+            <span class="status-sub">${unopenedCount} ${unopenedCount === 1 ? "note" : "notes"} left inside</span>
           `;
         }
       }

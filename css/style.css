@@ -6,37 +6,37 @@
  */
 
 :root {
-  /* Warm Romantic Color Palette */
-  --bg-primary: #fdf8f5;
-  --bg-secondary: #fcedf0;
+  /* Warm Natural Stationery Color Palette */
+  --bg-primary: #fbf7f4;
+  --bg-secondary: #f6ede8;
   --bg-surface: #ffffff;
-  --bg-warm-cream: #fffdfa;
+  --bg-warm-cream: #fffdf9;
 
-  --text-main: #3d2b27;
-  --text-muted: #786561;
-  --text-light: #9e8a86;
+  --text-main: #3b2d29;
+  --text-muted: #6e5a54;
+  --text-light: #96827c;
 
-  --accent-rose: #f43f5e;
-  --accent-rose-dark: #be123c;
-  --accent-rose-light: #ffe4e6;
-  --accent-gold: #f59e0b;
-  --accent-gold-light: #fef3c7;
-  --accent-lavender: #8b5cf6;
-  --accent-lavender-light: #ede9fe;
-  --accent-peach: #f97316;
-  --accent-peach-light: #ffedd5;
-  --accent-blue: #0284c7;
-  --accent-blue-light: #e0f2fe;
+  --accent-rose: #c9646b;
+  --accent-rose-dark: #9e474e;
+  --accent-rose-light: #f9eaec;
+  --accent-gold: #d49b54;
+  --accent-gold-light: #fbf2e3;
+  --accent-lavender: #8b7396;
+  --accent-lavender-light: #f2edf5;
+  --accent-peach: #d9825b;
+  --accent-peach-light: #fceede;
+  --accent-blue: #60859e;
+  --accent-blue-light: #eaf1f6;
 
   /* Paper Palette */
-  --paper-cream: #fffcf7;
-  --paper-border: #f0e6dd;
-  --paper-shadow: 0 16px 36px -12px rgba(92, 49, 41, 0.16), 0 4px 12px rgba(92, 49, 41, 0.08);
-  --paper-shadow-hover: 0 20px 45px -10px rgba(92, 49, 41, 0.22), 0 6px 16px rgba(92, 49, 41, 0.1);
+  --paper-cream: #fdfaf5;
+  --paper-border: #ece2d6;
+  --paper-shadow: 0 18px 40px -14px rgba(74, 52, 44, 0.14), 0 4px 14px rgba(74, 52, 44, 0.06);
+  --paper-shadow-hover: 0 22px 45px -12px rgba(74, 52, 44, 0.18), 0 6px 16px rgba(74, 52, 44, 0.08);
 
   /* Glass Jar */
-  --jar-glass-tint: rgba(255, 255, 255, 0.45);
-  --jar-glass-border: rgba(244, 63, 94, 0.25);
+  --jar-glass-tint: rgba(255, 255, 255, 0.48);
+  --jar-glass-border: rgba(180, 148, 136, 0.3);
   --jar-reflection: rgba(255, 255, 255, 0.85);
 
   /* Typography */
@@ -70,7 +70,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--text-main);
-  background: radial-gradient(circle at 50% 20%, #fff7f8 0%, #fff3f5 45%, #fdf0f2 100%);
+  background: radial-gradient(circle at 50% 20%, #fffcf9 0%, #faf3ef 50%, #f4eae4 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ body {
 }
 
 body.final-reveal-active {
-  background: radial-gradient(circle at 50% 30%, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%);
+  background: radial-gradient(circle at 50% 30%, #fffaf7 0%, #f8ebe9 55%, #f2dede 100%);
 }
 
 /* Accessible focus outlines */
@@ -211,14 +211,14 @@ button {
    ============================================================= */
 .welcome-card {
   text-align: center;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 253, 250, 0.9);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(236, 226, 214, 0.95);
   border-radius: var(--radius-lg);
-  padding: 3.5rem 2.5rem;
-  max-width: 580px;
+  padding: 3.25rem 2.5rem;
+  max-width: 540px;
   width: 100%;
-  box-shadow: 0 24px 48px -12px rgba(244, 63, 94, 0.15), 0 8px 24px rgba(92, 49, 41, 0.06);
+  box-shadow: 0 20px 44px -14px rgba(92, 64, 51, 0.12), 0 6px 18px rgba(92, 64, 51, 0.05);
   animation: fadeInScale 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -236,33 +236,34 @@ button {
 }
 
 .welcome-preview-jar {
-  font-size: 5rem;
-  margin-bottom: 1.25rem;
-  filter: drop-shadow(0 12px 20px rgba(244, 63, 94, 0.2));
+  font-size: 4.5rem;
+  margin-bottom: 1.15rem;
+  filter: drop-shadow(0 10px 16px rgba(92, 64, 51, 0.12));
   animation: gentleFloat 4s ease-in-out infinite;
 }
 
 .welcome-title {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: 2.35rem;
   line-height: 1.2;
   color: var(--text-main);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 .welcome-subtitle {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--accent-rose);
-  margin-bottom: 1.5rem;
+  font-family: var(--font-handwriting);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-rose-dark);
+  margin-bottom: 1.35rem;
 }
 
 .welcome-message {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.02rem;
+  line-height: 1.75;
   color: var(--text-muted);
-  margin-bottom: 2.25rem;
-  max-width: 480px;
+  margin-bottom: 2.1rem;
+  max-width: 460px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -271,19 +272,20 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  padding: 0.9rem 2.25rem;
+  background: linear-gradient(135deg, #c9646b 0%, #b35259 100%);
   color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   border-radius: var(--radius-full);
-  box-shadow: 0 10px 24px -4px rgba(244, 63, 94, 0.45);
+  box-shadow: 0 8px 20px -4px rgba(179, 82, 89, 0.35);
   transition: var(--transition-smooth);
 }
 
 .btn-primary-large:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 16px 32px -4px rgba(244, 63, 94, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -4px rgba(179, 82, 89, 0.45);
 }
 
 .btn-primary-large:active {
@@ -351,7 +353,7 @@ button {
 .progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #fb7185 0%, #f43f5e 50%, #e11d48 100%);
+  background: linear-gradient(90deg, #d88389 0%, #c9646b 100%);
   border-radius: var(--radius-full);
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -374,14 +376,14 @@ button {
   width: 320px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 228, 230, 0.7) 0%, rgba(254, 205, 211, 0.25) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 226, 218, 0.65) 0%, rgba(240, 214, 206, 0.22) 50%, transparent 70%);
   pointer-events: none;
   transition: var(--transition-smooth);
   animation: haloBreath 5s ease-in-out infinite;
 }
 
 .has-final-unlocked .jar-glow-halo {
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.5) 0%, rgba(244, 63, 94, 0.4) 45%, transparent 75%);
+  background: radial-gradient(circle, rgba(238, 204, 168, 0.45) 0%, rgba(201, 100, 107, 0.3) 45%, transparent 75%);
   animation: haloGoldenGlow 3s ease-in-out infinite;
 }
 
@@ -417,7 +419,7 @@ button {
   height: 100%;
   pointer-events: none;
   z-index: 5;
-  filter: drop-shadow(0 18px 25px rgba(244, 63, 94, 0.18));
+  filter: drop-shadow(0 16px 24px rgba(92, 64, 51, 0.14));
 }
 
 /* Notes nestled inside the jar */
@@ -464,11 +466,11 @@ button {
 }
 
 /* Colors of folded notes */
-.note-color-pink .folded-paper { background: #ffe4e6; border-color: #fda4af; }
-.note-color-yellow .folded-paper { background: #fef3c7; border-color: #fde047; }
-.note-color-lavender .folded-paper { background: #ede9fe; border-color: #c4b5fd; }
-.note-color-blue .folded-paper { background: #e0f2fe; border-color: #7dd3fc; }
-.note-color-peach .folded-paper { background: #ffedd5; border-color: #fdba74; }
+.note-color-pink .folded-paper { background: #fae8ea; border-color: #e5b8bd; }
+.note-color-yellow .folded-paper { background: #fbf0d9; border-color: #e6cb94; }
+.note-color-lavender .folded-paper { background: #efeaf4; border-color: #cbbcd9; }
+.note-color-blue .folded-paper { background: #e6f0f5; border-color: #b3cddb; }
+.note-color-peach .folded-paper { background: #fbeddf; border-color: #e5c3a3; }
 
 /* Final Note Inside Jar */
 .jar-final-note-preview {
@@ -481,10 +483,10 @@ button {
 }
 
 .jar-final-note-preview .folded-paper {
-  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  background: linear-gradient(135deg, #c9646b 0%, #b04b52 100%);
   color: #ffffff;
-  border: 2px solid #fbbf24;
-  box-shadow: 0 0 20px rgba(244, 63, 94, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  border: 1.5px solid #e6c594;
+  box-shadow: 0 8px 20px rgba(176, 75, 82, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .folded-seal {
@@ -514,7 +516,7 @@ button {
   bottom: -15px;
   width: 190px;
   height: 18px;
-  background: radial-gradient(ellipse at center, rgba(190, 18, 60, 0.22) 0%, rgba(190, 18, 60, 0.05) 55%, transparent 80%);
+  background: radial-gradient(ellipse at center, rgba(92, 64, 51, 0.18) 0%, rgba(92, 64, 51, 0.05) 55%, transparent 80%);
   border-radius: 50%;
   pointer-events: none;
   animation: shadowBreathe 4s ease-in-out infinite;
@@ -542,14 +544,15 @@ button {
 
 .status-badge.special-unlocked {
   display: inline-block;
-  padding: 0.4rem 1.1rem;
-  background: linear-gradient(135deg, #f43f5e 0%, #d97706 100%);
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
+  padding: 0.35rem 1rem;
+  background: #f5dfe1;
+  color: var(--accent-rose-dark);
+  border: 1px solid #e5b8bd;
+  font-size: 0.8rem;
+  font-weight: 600;
   border-radius: var(--radius-full);
   margin-bottom: 0.5rem;
-  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.35);
+  box-shadow: 0 2px 8px rgba(158, 71, 78, 0.12);
 }
 
 .special-msg {
@@ -664,25 +667,24 @@ button {
 /* Paper texture simulation */
 .paper-texture {
   background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
-    linear-gradient(rgba(240, 230, 220, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(240, 230, 220, 0.15) 1px, transparent 1px);
-  background-size: 100% 100%, 20px 20px, 20px 20px;
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(210, 195, 180, 0.18) 28px);
+  background-size: 100% 100%, 100% 28px;
 }
 
 /* Washi tape on top of paper */
 .paper-tape-seal {
   position: absolute;
-  top: -12px;
+  top: -10px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 26px;
-  background: rgba(254, 205, 211, 0.7);
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 96px;
+  height: 24px;
+  background: rgba(235, 205, 195, 0.65);
   backdrop-filter: blur(2px);
-  border-left: 2px dashed rgba(244, 63, 94, 0.3);
-  border-right: 2px dashed rgba(244, 63, 94, 0.3);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-left: 2px dotted rgba(180, 140, 130, 0.35);
+  border-right: 2px dotted rgba(180, 140, 130, 0.35);
+  box-shadow: 0 2px 5px rgba(74, 52, 44, 0.06);
 }
 
 .modal-close-button {
@@ -784,45 +786,45 @@ button {
 .btn-card-close {
   display: inline-flex;
   align-items: center;
-  padding: 0.65rem 1.75rem;
-  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, #c9646b 0%, #b35259 100%);
   color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 500;
   border-radius: var(--radius-full);
-  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+  box-shadow: 0 4px 12px rgba(179, 82, 89, 0.25);
   transition: var(--transition-smooth);
 }
 
 .btn-card-close:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+  box-shadow: 0 6px 16px rgba(179, 82, 89, 0.35);
 }
 
 /* Card Themes */
-.card-color-pink { border-top: 4px solid #fda4af; }
-.card-color-yellow { border-top: 4px solid #fde047; }
-.card-color-lavender { border-top: 4px solid #c4b5fd; }
-.card-color-blue { border-top: 4px solid #7dd3fc; }
-.card-color-peach { border-top: 4px solid #fdba74; }
+.card-color-pink { border-top: 3px solid #e5b8bd; }
+.card-color-yellow { border-top: 3px solid #e6cb94; }
+.card-color-lavender { border-top: 3px solid #cbbcd9; }
+.card-color-blue { border-top: 3px solid #b3cddb; }
+.card-color-peach { border-top: 3px solid #e5c3a3; }
 
 /* Final Confession Special Styling (FR-012) */
 .card-final-confession {
-  background: linear-gradient(180deg, #fffafb 0%, #fff1f2 100%);
-  border: 2px solid #fda4af;
-  border-top: 6px solid #e11d48;
-  box-shadow: 0 25px 60px -10px rgba(225, 29, 72, 0.35), 0 0 30px rgba(251, 191, 36, 0.2);
+  background: linear-gradient(180deg, #fffdf9 0%, #fbf3f2 100%);
+  border: 1px solid #e5c5c7;
+  border-top: 4px solid #c9646b;
+  box-shadow: 0 24px 54px -12px rgba(158, 71, 78, 0.25), 0 4px 18px rgba(92, 64, 51, 0.08);
 }
 
 .card-final-confession .category-tag {
-  background: linear-gradient(135deg, #e11d48 0%, #b91c1c 100%);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.3);
+  background: #f5dfe1;
+  color: #9e474e;
+  box-shadow: none;
 }
 
 .card-final-confession .note-title-heading {
-  color: #9f1239;
-  font-size: 2.1rem;
+  color: #7d353b;
+  font-size: 2rem;
 }
 
 /* =============================================================

@@ -201,16 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (statusPillElem) {
         if (state.isFinalOpened) {
-          statusPillElem.textContent = "Jar Complete ✨";
+          statusPillElem.textContent = "All read";
           statusPillElem.className = "progress-status-pill pill-completed";
         } else if (state.isFinalUnlocked) {
-          statusPillElem.textContent = "Final Note Unlocked! 💖";
+          statusPillElem.textContent = "1 note left";
           statusPillElem.className = "progress-status-pill pill-final-unlocked";
         } else if (openedCount > 0) {
-          statusPillElem.textContent = `${percent}% Explored`;
+          const left = totalRegular - openedCount;
+          statusPillElem.textContent = `${left} ${left === 1 ? "note" : "notes"} left`;
           statusPillElem.className = "progress-status-pill pill-in-progress";
         } else {
-          statusPillElem.textContent = "Freshly Sealed";
+          statusPillElem.textContent = `${totalRegular} notes inside`;
           statusPillElem.className = "progress-status-pill pill-ready";
         }
       }
@@ -231,8 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const bgContainer = document.getElementById("floating-bg-particles");
       if (!bgContainer) return;
 
-      const particleIcons = ["💖", "✨", "🌸", "⭐", "💫", "🤍"];
-      const particleCount = window.innerWidth < 640 ? 12 : 24;
+      const particleIcons = ["✦", "·", "🤍", "🌸"];
+      const particleCount = window.innerWidth < 640 ? 8 : 14;
 
       for (let i = 0; i < particleCount; i++) {
         const p = document.createElement("span");
@@ -240,10 +241,10 @@ document.addEventListener("DOMContentLoaded", () => {
         p.textContent = particleIcons[Math.floor(Math.random() * particleIcons.length)];
         p.style.left = `${Math.random() * 100}vw`;
         p.style.top = `${Math.random() * 100}vh`;
-        p.style.fontSize = `${10 + Math.random() * 14}px`;
-        p.style.animationDuration = `${12 + Math.random() * 18}s`;
+        p.style.fontSize = `${9 + Math.random() * 10}px`;
+        p.style.animationDuration = `${16 + Math.random() * 20}s`;
         p.style.animationDelay = `${Math.random() * 8}s`;
-        p.style.opacity = `${0.12 + Math.random() * 0.25}`;
+        p.style.opacity = `${0.08 + Math.random() * 0.16}`;
         bgContainer.appendChild(p);
       }
     },

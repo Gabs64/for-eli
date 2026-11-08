@@ -137,10 +137,10 @@
 
       if (numberElem) {
         if (note.number) {
-          numberElem.textContent = `Note #${note.number}`;
+          numberElem.textContent = `${note.number} / 6`;
           numberElem.classList.remove("hidden");
         } else if (note.isFinal) {
-          numberElem.textContent = "Final Note";
+          numberElem.textContent = "Last Note";
           numberElem.classList.remove("hidden");
         } else {
           numberElem.classList.add("hidden");
@@ -394,18 +394,18 @@
       const container = document.getElementById("confetti-container");
       if (!container) return;
 
-      const colors = ["#fda4af", "#f43f5e", "#fbbf24", "#c084fc", "#67e8f9", "#fcd34d", "#ffffff"];
-      const shapes = ["circle", "rect", "heart"];
+      const colors = ["#e5b8bd", "#c9646b", "#e6cb94", "#cbbcd9", "#f5dfe1", "#f9eaec"];
+      const shapes = ["circle", "heart"];
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 24; i++) {
         const confetti = document.createElement("div");
         const shape = shapes[Math.floor(Math.random() * shapes.length)];
         confetti.className = `confetti-piece shape-${shape}`;
         confetti.style.left = `${Math.random() * 100}vw`;
         confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDuration = `${2.5 + Math.random() * 2.5}s`;
+        confetti.style.animationDuration = `${3 + Math.random() * 2.5}s`;
         confetti.style.animationDelay = `${Math.random() * 0.8}s`;
-        confetti.style.transform = `scale(${0.6 + Math.random() * 0.8}) rotate(${Math.random() * 360}deg)`;
+        confetti.style.transform = `scale(${0.55 + Math.random() * 0.65}) rotate(${Math.random() * 360}deg)`;
 
         container.appendChild(confetti);
 

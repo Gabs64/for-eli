@@ -33,20 +33,20 @@ const NOTE_JAR_CONFIG = {
 
   // Welcome Screen
   welcome: {
-    badge: "A Special Digital Gift",
-    title: "A Jar of Little Notes",
-    subtitle: "For Eli — open them whenever you need a smile.",
-    message: "I made something special for you. Inside this glass jar are little folded notes filled with memories, little things I appreciate, and thoughts I wanted to share with you. Take your time and open them one by one.",
-    buttonText: "Open the Jar ✨",
+    badge: "",
+    title: "For Eli",
+    subtitle: "A few notes I put together for you.",
+    message: "I made this little jar of notes for you—filled with a few memories, small things I appreciate, and thoughts I wanted to share. Take your time and open them one by one.",
+    buttonText: "Open the Jar",
     jarPreviewNote: "Tap to reach inside",
   },
 
   // Main Jar Screen Texts
   jarScreen: {
-    tapInstruction: "Tap the jar to draw a note",
-    jarEmptyInstruction: "All regular notes have been opened!",
+    tapInstruction: "Tap the jar to pick a note",
+    jarEmptyInstruction: "You've read all the notes so far",
     openNotesButton: "Opened Notes",
-    resetButton: "Reset Jar",
+    resetButton: "Start Over",
   },
 
   // Note Categories & Matching Visual Colors
@@ -100,8 +100,8 @@ const NOTE_JAR_CONFIG = {
       id: "note-01",
       number: 1,
       category: "Memories",
-      title: "The Beginning (Day 1)",
-      prompt: "How it all started on that cozy afternoon...",
+      title: "Day 1",
+      prompt: "How it all started that afternoon...",
       color: "pink",
       symbol: "🌸",
       message: `'Twas during a cozy afternoon when my friend and I went out just to catch up. Later on, after we finished our kwento, the idea of trying out Litmatch suddenly crossed my mind, so I decided to give it a try. I joined the first voice game, which was where I met you. At that time, my only intention was to talk to a random person.
@@ -114,8 +114,8 @@ Day 1 was the beginning of everything.`,
       id: "note-02",
       number: 2,
       category: "Memories",
-      title: "My First Impression of You",
-      prompt: "What I secretly noticed about you early on...",
+      title: "First Impression",
+      prompt: "What I noticed about you early on...",
       color: "peach",
       symbol: "✨",
       message: `My first impression of you was that you were someone who was very mahinhin, smart, fun to be around, and caring.
@@ -138,8 +138,8 @@ I like the way you talk, the way you smile, and all those little things you do t
       id: "note-04",
       number: 4,
       category: "Inside Jokes",
-      title: "Fun Memories & Wake-Up Calls",
-      prompt: "November 7, spam calls, and little sisters...",
+      title: "5 AM Calls & Movie Nights",
+      prompt: "November 7, spam calls, and 'Ate Gab'...",
       color: "blue",
       symbol: "🧸",
       message: `I remember that early Saturday morning, November 7, when I kept spam-calling you because you asked me to wake you up at 5 AM.
@@ -152,7 +152,7 @@ Those are definitely some of the fun memories I'll remember. I also can't forget
       id: "note-05",
       number: 5,
       category: "Open When",
-      title: "Open When Things Feel Heavy",
+      title: "Whenever Things Feel Heavy",
       prompt: "Just one call away whenever you need me...",
       color: "peach",
       symbol: "💌",
@@ -166,8 +166,8 @@ You don't have to go through everything alone.`,
       id: "note-06",
       number: 6,
       category: "Appreciation",
-      title: "Appreciating Who You Truly Are",
-      prompt: "Why I admire you and want to know you more...",
+      title: "Getting to Know You",
+      prompt: "What I've come to appreciate about you so far...",
       color: "yellow",
       symbol: "☀️",
       message: `I appreciate and admire you for who you truly are.
@@ -182,14 +182,14 @@ I may still be seeing things from afar, but these are the things I've come to no
   // Unlocks ONLY after all 6 regular notes above have been opened.
   finalConfession: {
     id: "note-final",
-    category: "Final Message",
+    category: "One Last Note",
     title: "I Like You, Eli",
-    prompt: "What I've been meaning to tell you...",
+    prompt: "Something I've been meaning to tell you...",
     color: "gold-rose",
-    symbol: "💖",
-    lockedMessage: "There's one more note waiting for you at the bottom of the jar...",
-    unlockedMessage: "One last thing. Open this when you're ready, Eli.",
-    badgeText: "A Special Confession",
+    symbol: "❤️",
+    lockedMessage: "There's one more note waiting at the bottom of the jar...",
+    unlockedMessage: "There's one last note at the bottom. Open it whenever you're ready.",
+    badgeText: "One Last Note",
     message: `There is one thing I can say, and that is: I like you, Eli.
 
 I like you as a whole human being in this world. I like the person you are, the way you carry yourself, and the little things that make you who you are.
@@ -199,12 +199,12 @@ I don't know what the future holds for us, but I just wanted you to know how I g
 
   // Completion Screen Settings
   completion: {
-    badge: "All Notes Opened",
-    title: "You've Found Every Note, Eli!",
-    subtitle: "I hope each little paper brought a genuine smile to your face.",
-    message: "You can reopen any of your notes anytime you want using the button below, or keep this page to return to whenever you want to re-read them.",
-    reviewButtonText: "Browse All Notes 💌",
-    replayButtonText: "Start Over from the Beginning ↺",
+    badge: "All Read",
+    title: "That's All of Them, Eli",
+    subtitle: "I hope reading these brought a little smile to your face.",
+    message: "You can look back at any of the notes whenever you feel like it.",
+    reviewButtonText: "Read Notes Again",
+    replayButtonText: "Put Notes Back in the Jar",
   },
 };
 
