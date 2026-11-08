@@ -1,0 +1,257 @@
+/**
+ * VIRTUAL NOTE JAR - RESPONSIVE STYLESHEET
+ * -------------------------------------------------------------
+ * Adapts glass jar, paper note cards, drawers, and typography
+ * across mobile phones, tablets, and desktop displays.
+ */
+
+/* =============================================================
+   TABLETS & MEDIUM SCREENS (<= 768px)
+   ============================================================= */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .header-actions .btn-icon-text {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .welcome-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .welcome-title {
+    font-size: 2.1rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .welcome-message {
+    font-size: 0.95rem;
+  }
+
+  .virtual-jar-container {
+    width: 220px;
+    height: 310px;
+  }
+
+  .jar-notes-pile {
+    height: 190px;
+  }
+
+  .note-card {
+    padding: 2.25rem 1.5rem 1.75rem;
+    max-height: 82vh;
+  }
+
+  .note-title-heading {
+    font-size: 1.55rem;
+  }
+
+  .drawer-panel {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* =============================================================
+   MOBILE PHONES (<= 480px)
+   ============================================================= */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .brand-title {
+    font-size: 1rem;
+  }
+
+  .header-actions {
+    gap: 0.4rem;
+  }
+
+  .btn-icon-text {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .btn-icon-text .audio-label {
+    display: none; /* Icon only on very small screens */
+  }
+
+  .main-wrapper {
+    padding: 0.5rem 1rem 2rem;
+  }
+
+  .welcome-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .welcome-preview-jar {
+    font-size: 4rem;
+  }
+
+  .welcome-title {
+    font-size: 1.85rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .welcome-message {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .btn-primary-large {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .progress-panel {
+    margin-bottom: 1.25rem;
+  }
+
+  .progress-count-label {
+    font-size: 0.8rem;
+  }
+
+  .virtual-jar-container {
+    width: 190px;
+    height: 275px;
+  }
+
+  .jar-notes-pile {
+    height: 165px;
+    bottom: 18px;
+  }
+
+  .jar-folded-note {
+    width: 48px;
+    height: 36px;
+  }
+
+  .folded-paper {
+    font-size: 0.95rem;
+  }
+
+  .jar-final-note-preview {
+    width: 60px !important;
+    height: 44px !important;
+  }
+
+  .folded-seal {
+    font-size: 1.15rem;
+  }
+
+  .jar-status-panel {
+    margin-top: 1.25rem;
+  }
+
+  .status-msg {
+    font-size: 0.95rem;
+  }
+
+  .status-sub {
+    font-size: 0.8rem;
+  }
+
+  .modal-overlay {
+    padding: 0.85rem;
+  }
+
+  .note-card {
+    padding: 2rem 1.15rem 1.5rem;
+    max-height: 88vh;
+    border-radius: var(--radius-md);
+  }
+
+  .note-title-heading {
+    font-size: 1.4rem;
+  }
+
+  .card-final-confession .note-title-heading {
+    font-size: 1.65rem;
+  }
+
+  .note-prompt-quote {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .note-body-scrollable {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .bottom-controls-bar {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .completion-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .completion-icon {
+    font-size: 3rem;
+  }
+
+  .completion-title {
+    font-size: 1.75rem;
+  }
+
+  .completion-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .completion-message {
+    font-size: 0.9rem;
+  }
+}
+
+/* =============================================================
+   LARGE DESKTOPS (>= 1200px)
+   ============================================================= */
+@media (min-width: 1200px) {
+  .virtual-jar-container {
+    width: 270px;
+    height: 380px;
+  }
+
+  .jar-notes-pile {
+    height: 240px;
+  }
+
+  .jar-folded-note {
+    width: 64px;
+    height: 48px;
+  }
+
+  .note-card {
+    max-width: 580px;
+    padding: 3rem 2.5rem 2.25rem;
+  }
+
+  .note-title-heading {
+    font-size: 2rem;
+  }
+}
+

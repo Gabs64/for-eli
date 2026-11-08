@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="jarGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#fdf2f4" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fbcfe8" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="lidWood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+  </defs>
+  <!-- Shadow -->
+  <ellipse cx="32" cy="59" rx="18" ry="3.5" fill="#f43f5e" fill-opacity="0.15" filter="blur(2px)"/>
+  <!-- Jar Body -->
+  <rect x="15" y="18" width="34" height="38" rx="8" ry="8" fill="url(#jarGlass)" stroke="#fda4af" stroke-width="2"/>
+  <!-- Highlights -->
+  <path d="M19 22 Q18 36 19 50" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <path d="M45 24 Q46 36 45 48" stroke="#ffffff" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.4"/>
+  <!-- Cork Lid -->
+  <path d="M22 14 L42 14 L40 18 L24 18 Z" fill="url(#lidWood)"/>
+  <rect x="20" y="11" width="24" height="4" rx="2" fill="#d97706"/>
+  <!-- Little folded notes inside -->
+  <polygon points="22,46 29,40 33,48 26,52" fill="#f472b6" opacity="0.9"/>
+  <polygon points="32,48 39,42 42,49 35,53" fill="#a78bfa" opacity="0.9"/>
+  <polygon points="26,38 34,34 38,41 30,44" fill="#fbbf24" opacity="0.9"/>
+  <!-- Floating heart -->
+  <path d="M32 26 C30 22, 25 23, 25 27 C25 31, 32 35, 32 35 C32 35, 39 31, 39 27 C39 23, 34 22, 32 26 Z" fill="#e11d48"/>
+</svg>
+
