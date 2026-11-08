@@ -104,23 +104,31 @@ const NOTE_JAR_CONFIG = {
       prompt: "How it all started that afternoon...",
       color: "pink",
       symbol: "🌸",
-      message: `'Twas during a cozy afternoon when my friend and I went out just to catch up. Later on, after we finished our kwento, the idea of trying out Litmatch suddenly crossed my mind, so I decided to give it a try. I joined the first voice game, which was where I met you. At that time, my only intention was to talk to a random person.
+      message: `'Twas during a cozy afternoon when my friend and I decided to go out just to catch up. After we finished our kwento, the thought of trying out Litmatch suddenly crossed my mind, so I decided to give it a shot. I joined the first voice game, and that's where I met you. At that time, I honestly had no expectations other than having a casual conversation with a random person.
 
-A lot of things happened on that first day. We talked about our lives, our school experiences, and our interests. We even had our first movie night when I found out that you also liked horror movies.
+Little did I know that a simple decision would lead to something I would eventually look forward to.
 
-Day 1 was the beginning of everything.`,
+We talked about so many things that first day, from our lives and school experiences to our interests and random stories. We even had our very first movie night, where I discovered that you were also into horror movies.
+
+It's funny how something so unexpected can turn into a memory worth keeping.
+
+**Day 1 was where our little story began.**`,
     },
     {
       id: "note-02",
       number: 2,
-      category: "Memories",
-      title: "First Impression",
+      category: "First Impressions",
+      title: "First Impressions",
       prompt: "What I noticed about you early on...",
       color: "peach",
       symbol: "✨",
-      message: `My first impression of you was that you were someone who was very mahinhin, smart, fun to be around, and caring.
+      message: `My first impression of you was that you were someone who was very mahinhin, smart, fun to be around, and genuinely caring.
 
-I genuinely hope that your caring heart stays with you for a lifetime because it's one of the things that makes you special.`,
+As I got to know you a little more, I started noticing the little things that made those first impressions even more meaningful.
+
+I genuinely hope that you never lose that caring heart of yours. It's something I admire about you, and I hope you continue carrying it with you wherever life takes you.
+
+Never underestimate how special that part of you is.`,
     },
     {
       id: "note-03",
@@ -130,9 +138,15 @@ I genuinely hope that your caring heart stays with you for a lifetime because it
       prompt: "Ordinary moments that make me smile...",
       color: "lavender",
       symbol: "🌙",
-      message: `Random VC nights have become something we've gotten used to at this point.
+      message: `Random VC nights have slowly become one of the little things I've grown fond of.
 
-I like the way you talk, the way you smile, and all those little things you do that might seem ordinary to you but somehow make me smile.`,
+Whether we're talking about random things, sharing stories about our day, scrolling through our phones, or simply enjoying each other's company in silence, I find comfort in those moments.
+
+I like the way you talk, the way you smile, and all those little things you probably don't even notice yourself doing but somehow manage to make me smile.
+
+You might consider them ordinary moments, but I hope you know that they're memories I genuinely appreciate.
+
+Sometimes, it's the simplest moments that become the most memorable.`,
     },
     {
       id: "note-04",
@@ -142,11 +156,15 @@ I like the way you talk, the way you smile, and all those little things you do t
       prompt: "November 7, spam calls, and 'Ate Gab'...",
       color: "blue",
       symbol: "🧸",
-      message: `I remember that early Saturday morning, November 7, when I kept spam-calling you because you asked me to wake you up at 5 AM.
+      message: `I don't think I'll ever forget that early Saturday morning, November 7, when I kept spam-calling you because you asked me to wake you up at 5 AM. HAHAHAHAHA!
 
-And, of course, there's the moment when your little sister called me "Ate Gab" HAHAHAHAHAHAHA!
+And, of course, who could forget the moment your little sister called me "Ate Gab"? That one definitely caught me off guard. HAHAHAHAHAHA!
 
-Those are definitely some of the fun memories I'll remember. I also can't forget our very first movie night together.`,
+Those little unexpected moments never fail to make me smile whenever I remember them.
+
+I also can't leave out our very first movie night together. It's funny how these seemingly simple experiences have already become memories worth looking back on.
+
+I hope we get to make even more silly, random, and unforgettable memories along the way.`,
     },
     {
       id: "note-05",
@@ -156,11 +174,15 @@ Those are definitely some of the fun memories I'll remember. I also can't forget
       prompt: "Just one call away whenever you need me...",
       color: "peach",
       symbol: "💌",
-      message: `Always remember this: whenever things get rough on your end or you feel like opening up about something, I'm literally just one call away whenever you need me.
+      message: `Whenever things get a little too heavy, when life becomes overwhelming, or when you simply feel like letting things out, I hope you remember that you have someone who's willing to listen.
 
-Whether it's through chat, voice messages, or, of course, a voice call, I'm always willing to listen.
+I'm literally just one call away whenever you need someone to talk to.
 
-You don't have to go through everything alone.`,
+Whether it's through chat, voice messages, or a good old-fashioned voice call, you can always share what's on your mind. You don't have to have the right words, and you don't have to pretend that everything is okay.
+
+I may not always have the perfect advice or know exactly what to say, but I'll always do my best to listen and understand.
+
+And please remember, you don't have to go through everything alone.`,
     },
     {
       id: "note-06",
@@ -170,11 +192,17 @@ You don't have to go through everything alone.`,
       prompt: "What I've come to appreciate about you so far...",
       color: "yellow",
       symbol: "☀️",
-      message: `I appreciate and admire you for who you truly are.
+      message: `I genuinely appreciate and admire you for who you are.
 
-Maybe there are still a lot of things I don't know about you, but that's also one of the reasons why I want to get to know you more.
+I know there are still so many things I have yet to discover about you, stories I haven't heard, experiences I haven't gotten to know, and little things about you that I'm sure I'll come to appreciate along the way.
 
-I may still be seeing things from afar, but these are the things I've come to notice and appreciate about you so far.`,
+But perhaps that's one of the things I find exciting about getting to know you. There's still so much more to discover, and I'm looking forward to learning about those things at your own pace.
+
+I may only be seeing a small part of who you are right now, but even from that little glimpse, I've already found so many things worth appreciating.
+
+Thank you for being open with me, for the trust you've given me, and for allowing me to be part of some of your ordinary days.
+
+I hope you never feel that you have to be anyone other than yourself around me.`,
     },
   ],
 
@@ -190,11 +218,19 @@ I may still be seeing things from afar, but these are the things I've come to no
     lockedMessage: "There's one more note waiting at the bottom of the jar...",
     unlockedMessage: "There's one last note at the bottom. Open it whenever you're ready.",
     badgeText: "One Last Note",
-    message: `There is one thing I can say, and that is: I like you, Eli.
+    message: `There's one thing I've been wanting to tell you, and that is: **I like you, Eli.**
 
-I like you as a whole human being in this world. I like the person you are, the way you carry yourself, and the little things that make you who you are.
+I like you not just because you're cute, but because of the person you are as a whole. I like the way you carry yourself, the way you interact with people, your caring nature, and even the little things that make you uniquely you.
 
-I don't know what the future holds for us, but I just wanted you to know how I genuinely feel. I'm not expecting anything from you. I simply wanted to be honest about my feelings because I think you deserve to know. ❤️`,
+I know there's still a lot I have yet to learn about you, and I'm not going to pretend that I already know everything about you. But that's exactly why I want to keep getting to know you.
+
+I don't know what the future holds for us, and I don't want to rush anything. I'm more than willing to take things slowly and let whatever we have grow naturally, without putting unnecessary expectations on either of us.
+
+I'm not telling you this because I'm expecting you to feel the same way or because I want you to give me an answer right away. I simply believe that genuine feelings deserve to be expressed, and I think you deserve to know how I truly feel about you.
+
+Whatever happens from here, I'm genuinely grateful that a random decision to join a voice game led me to meet you.
+
+**I'm glad I got to meet you, Eli. And I hope this is only the beginning of many more memories we get to share.** ❤️`,
   },
 
   // Completion Screen Settings

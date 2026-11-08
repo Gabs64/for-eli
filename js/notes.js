@@ -174,10 +174,19 @@
           const trimmed = paraText.trim();
           if (trimmed.length > 0) {
             const p = document.createElement("p");
-            // Also handle single newlines inside paragraph with br
+            // Also handle single newlines inside paragraph with br and **bold** text
             const lines = trimmed.split("\n");
             lines.forEach((line, idx) => {
-              p.appendChild(document.createTextNode(line));
+              const parts = line.split(/(\*\*.*?\*\*)/g);
+              parts.forEach((part) => {
+                if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+                  const strong = document.createElement("strong");
+                  strong.textContent = part.slice(2, -2);
+                  p.appendChild(strong);
+                } else if (part.length > 0) {
+                  p.appendChild(document.createTextNode(part));
+                }
+              });
               if (idx < lines.length - 1) {
                 p.appendChild(document.createElement("br"));
               }
