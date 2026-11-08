@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (wMsg && config.welcome?.message) wMsg.textContent = config.welcome.message;
       if (wBtn && config.welcome?.buttonText) wBtn.innerHTML = `<span>${config.welcome.buttonText}</span>`;
 
-      // Header recipient name
+      // Header sender name
       const headerTitle = document.getElementById("header-jar-title");
-      if (headerTitle && config.meta?.recipientName) {
-        headerTitle.textContent = `${config.meta.recipientName}'s Note Jar`;
+      if (headerTitle && config.meta?.senderName) {
+        headerTitle.textContent = `${config.meta.senderName}'s Note Jar`;
       }
     },
 
