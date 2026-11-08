@@ -848,14 +848,14 @@ button {
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(43, 27, 24, 0.4);
+  background: rgba(43, 27, 24, 0.35);
   backdrop-filter: blur(6px);
   z-index: 250;
   display: flex;
   justify-content: flex-end;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .drawer-overlay.active {
@@ -864,20 +864,26 @@ button {
 }
 
 .drawer-panel {
-  background: #ffffff;
+  background: var(--paper-cream);
+  border-left: 1px solid var(--paper-border);
   width: 100%;
   max-width: 420px;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.75rem;
-  box-shadow: -10px 0 30px rgba(92, 49, 41, 0.15);
+  box-shadow: -14px 0 36px rgba(74, 52, 44, 0.16);
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .drawer-overlay.active .drawer-panel {
   transform: translateX(0);
+}
+
+.drawer-overlay.closing .drawer-panel {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 .drawer-header {
@@ -908,19 +914,32 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9rem 1.1rem;
-  background: var(--bg-primary);
-  border: 1px solid rgba(244, 63, 94, 0.15);
+  padding: 0.95rem 1.15rem;
+  background: #ffffff;
+  border: 1px solid var(--paper-border);
   border-radius: var(--radius-md);
   text-align: left;
-  transition: var(--transition-smooth);
+  opacity: 0;
+  transform: translateX(28px);
+  animation: drawerItemSlideIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .opened-note-item:hover {
-  background: #ffffff;
+  background: #fffdf9;
   border-color: var(--accent-rose);
-  transform: translateX(-3px);
-  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.12);
+  transform: translateX(-4px) scale(1.01);
+  box-shadow: 0 6px 16px rgba(92, 64, 51, 0.1);
+}
+
+.opened-note-item:active {
+  transform: scale(0.98);
+}
+
+.opened-note-item.item-selecting {
+  animation: drawerItemSelect 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+  border-color: var(--accent-rose);
+  background: var(--accent-rose-light);
 }
 
 .item-left {

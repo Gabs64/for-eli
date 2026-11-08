@@ -232,6 +232,54 @@
 }
 
 /* =============================================================
+   SIDEBAR / DRAWER ANIMATIONS
+   ============================================================= */
+@keyframes drawerItemSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerItemSelect {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.03) translateX(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95) translateX(-24px);
+  }
+}
+
+@keyframes notesBtnPulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.93);
+  }
+  80% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.notes-btn-clicked {
+  animation: notesBtnPulse 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =============================================================
    CONFETTI RAIN (FR-012)
    ============================================================= */
 @keyframes confettiFall {

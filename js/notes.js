@@ -54,7 +54,12 @@
       // Drawer open/close buttons
       const openDrawerBtn = document.getElementById("view-opened-notes-btn");
       if (openDrawerBtn) {
-        openDrawerBtn.addEventListener("click", () => this.openOpenedNotesDrawer());
+        openDrawerBtn.addEventListener("click", () => {
+          openDrawerBtn.classList.remove("notes-btn-clicked");
+          void openDrawerBtn.offsetWidth;
+          openDrawerBtn.classList.add("notes-btn-clicked");
+          this.openOpenedNotesDrawer();
+        });
       }
 
       const closeDrawerBtn = document.getElementById("drawer-close-btn");
@@ -368,22 +373,31 @@
     openOpenedNotesDrawer: function () {
       if (!this.drawerOverlay) return;
 
+      if (window.AudioManager) {
+        window.AudioManager.playPopSound();
+      }
+
       this.renderOpenedNotesList();
-      this.drawerOverlay.classList.remove("hidden");
+      this.drawerOverlay.classList.remove("hidden", "closing");
+
+      // Force browser reflow so CSS slide-in transition always plays smoothly
+      void this.drawerOverlay.offsetWidth;
       this.drawerOverlay.classList.add("active");
 
       const closeBtn = document.getElementById("drawer-close-btn");
       if (closeBtn) {
-        closeBtn.focus();
+        setTimeout(() => closeBtn.focus(), 200);
       }
     },
 
     closeOpenedNotesDrawer: function () {
       if (!this.drawerOverlay) return;
       this.drawerOverlay.classList.remove("active");
+      this.drawerOverlay.classList.add("closing");
       setTimeout(() => {
+        this.drawerOverlay.classList.remove("closing");
         this.drawerOverlay.classList.add("hidden");
-      }, 300);
+      }, 320);
     },
 
     isDrawerOpen: function () {
@@ -410,11 +424,12 @@
         return;
       }
 
-      // Render all opened regular notes
-      openedNotes.forEach((note) => {
+      // Render all opened regular notes with staggered entrance animation
+      openedNotes.forEach((note, index) => {
         const item = document.createElement("button");
         item.className = `opened-note-item color-${note.color || "pink"}`;
         item.setAttribute("type", "button");
+        item.style.animationDelay = `${0.08 + index * 0.055}s`;
         item.innerHTML = `
           <div class="item-left">
             <span class="item-symbol">${note.symbol || "✨"}</span>
@@ -427,10 +442,13 @@
         `;
 
         item.addEventListener("click", () => {
-          this.closeOpenedNotesDrawer();
+          item.classList.add("item-selecting");
+          setTimeout(() => {
+            this.closeOpenedNotesDrawer();
+          }, 140);
           setTimeout(() => {
             this.openNoteModal(note, true);
-          }, 350);
+          }, 380);
         });
 
         listContainer.appendChild(item);
@@ -441,11 +459,12 @@
         const finalItem = document.createElement("button");
         finalItem.className = "opened-note-item item-final-confession";
         finalItem.setAttribute("type", "button");
+        finalItem.style.animationDelay = `${0.08 + openedNotes.length * 0.055}s`;
         finalItem.innerHTML = `
           <div class="item-left">
-            <span class="item-symbol">💖</span>
+            <span class="item-symbol">❤️</span>
             <div class="item-text">
-              <span class="item-category">Final Note</span>
+              <span class="item-category">One Last Note</span>
               <h4 class="item-title">${config.finalConfession.title}</h4>
             </div>
           </div>
@@ -453,10 +472,13 @@
         `;
 
         finalItem.addEventListener("click", () => {
-          this.closeOpenedNotesDrawer();
+          finalItem.classList.add("item-selecting");
+          setTimeout(() => {
+            this.closeOpenedNotesDrawer();
+          }, 140);
           setTimeout(() => {
             this.openNoteModal({ ...config.finalConfession, isFinal: true }, true);
-          }, 350);
+          }, 380);
         });
 
         listContainer.appendChild(finalItem);
