@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
           statusPillElem.textContent = "All read";
           statusPillElem.className = "progress-status-pill pill-completed";
         } else if (state.isFinalUnlocked) {
-          statusPillElem.textContent = "1 note left";
+          statusPillElem.textContent = "1 secret note";
           statusPillElem.className = "progress-status-pill pill-final-unlocked";
         } else if (openedCount > 0) {
           const left = totalRegular - openedCount;
