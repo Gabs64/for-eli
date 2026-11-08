@@ -91,8 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const resetBtn = document.getElementById("reset-jar-btn");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
-          const ok = confirm("Are you sure you want to reset your jar? This will fold all notes back inside.");
-          if (ok) {
+          if (window.NotesModalManager && window.NotesModalManager.showConfirmModal) {
+            window.NotesModalManager.showConfirmModal({
+              title: "Put Notes Back in the Jar?",
+              message: "This will fold all the notes back inside the jar so you can open them again from the beginning.",
+              confirmText: "Yes, Start Over",
+              onConfirm: () => {
+                window.StateManager.resetProgress();
+              },
+            });
+          } else {
             window.StateManager.resetProgress();
           }
         });

@@ -290,6 +290,29 @@
     </div>
   </div>
 
+  <!-- =============================================================
+       CUSTOM CONFIRMATION MODAL
+       ============================================================= -->
+  <div id="confirm-modal-overlay" class="modal-overlay confirm-overlay hidden" role="dialog" aria-modal="true"
+    aria-labelledby="confirm-modal-title">
+    <div class="confirm-card paper-texture">
+      <div class="paper-tape-seal" aria-hidden="true"></div>
+      <div class="confirm-icon" aria-hidden="true">🫙</div>
+      <h3 id="confirm-modal-title" class="confirm-title">Put Notes Back in the Jar?</h3>
+      <p id="confirm-modal-message" class="confirm-message">
+        This will fold all the notes back inside the jar so you can open them again from the beginning.
+      </p>
+      <div class="confirm-actions">
+        <button id="confirm-ok-btn" class="btn-card-close" type="button">
+          <span>Yes, Start Over</span>
+        </button>
+        <button id="confirm-cancel-btn" class="btn-secondary" type="button">
+          <span>Cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts in dependency order -->
   <script src="js/notes.config.js"></script>
   <script src="js/storage.js"></script>

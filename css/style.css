@@ -960,15 +960,70 @@ button {
    ============================================================= */
 .completion-card {
   text-align: center;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 253, 250, 0.96);
   backdrop-filter: blur(16px);
-  border: 2px solid #fda4af;
+  border: 1px solid #e5c5c7;
   border-radius: var(--radius-lg);
   padding: 3rem 2.25rem;
   max-width: 520px;
   width: 100%;
-  box-shadow: 0 25px 60px -10px rgba(244, 63, 94, 0.3);
+  box-shadow: 0 24px 54px -12px rgba(158, 71, 78, 0.22), 0 6px 18px rgba(92, 64, 51, 0.08);
   position: relative;
+}
+
+/* =============================================================
+   CUSTOM CONFIRMATION MODAL
+   ============================================================= */
+.confirm-overlay {
+  z-index: 280;
+}
+
+.confirm-card {
+  position: relative;
+  text-align: center;
+  background: var(--paper-cream);
+  border: 1px solid var(--paper-border);
+  border-top: 3px solid #e5b8bd;
+  border-radius: var(--radius-md);
+  padding: 2.35rem 2rem 1.85rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--paper-shadow);
+  animation: fadeInScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.confirm-icon {
+  font-size: 2.6rem;
+  margin-bottom: 0.65rem;
+  filter: drop-shadow(0 6px 12px rgba(92, 64, 51, 0.12));
+}
+
+.confirm-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--text-main);
+  margin-bottom: 0.55rem;
+}
+
+.confirm-message {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 1.6rem;
+}
+
+.confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.confirm-actions .btn-card-close,
+.confirm-actions .btn-secondary {
+  flex: 1;
+  justify-content: center;
+  padding: 0.65rem 1.1rem;
 }
 
 .completion-icon {

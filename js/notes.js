@@ -37,10 +37,13 @@
         });
       }
 
-      // Escape key closes modal or drawer
+      // Escape key closes confirm modal, note modal, or drawer
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-          if (window.StateManager.state.isNoteModalOpen) {
+          const confirmOverlay = document.getElementById("confirm-modal-overlay");
+          if (confirmOverlay && confirmOverlay.classList.contains("active")) {
+            this.closeConfirmModal();
+          } else if (window.StateManager.state.isNoteModalOpen) {
             this.closeNoteModal();
           } else if (this.isDrawerOpen()) {
             this.closeOpenedNotesDrawer();
@@ -278,11 +281,16 @@
       const replayBtn = document.getElementById("completion-replay-btn");
       if (replayBtn) {
         replayBtn.onclick = () => {
-          if (confirm("Would you like to reset the jar and experience opening the notes again?")) {
-            compOverlay.classList.remove("active");
-            compOverlay.classList.add("hidden");
-            window.StateManager.resetProgress();
-          }
+          this.showConfirmModal({
+            title: "Put Notes Back in the Jar?",
+            message: "Would you like to fold all the notes back inside and open them again from the beginning?",
+            confirmText: "Yes, Start Over",
+            onConfirm: () => {
+              compOverlay.classList.remove("active");
+              compOverlay.classList.add("hidden");
+              window.StateManager.resetProgress();
+            },
+          });
         };
       }
 
@@ -293,6 +301,65 @@
           compOverlay.classList.add("hidden");
         };
       }
+    },
+
+    /**
+     * Custom Styled Confirmation Modal (replaces native window.confirm)
+     */
+    showConfirmModal: function (options = {}) {
+      const overlay = document.getElementById("confirm-modal-overlay");
+      if (!overlay) return;
+
+      const titleElem = document.getElementById("confirm-modal-title");
+      const msgElem = document.getElementById("confirm-modal-message");
+      const okBtn = document.getElementById("confirm-ok-btn");
+      const cancelBtn = document.getElementById("confirm-cancel-btn");
+
+      if (titleElem) titleElem.textContent = options.title || "Put Notes Back in the Jar?";
+      if (msgElem) {
+        msgElem.textContent =
+          options.message ||
+          "This will fold all the notes back inside the jar so you can open them again from the beginning.";
+      }
+      if (okBtn) {
+        okBtn.innerHTML = `<span>${options.confirmText || "Yes, Start Over"}</span>`;
+      }
+      if (cancelBtn) {
+        cancelBtn.innerHTML = `<span>${options.cancelText || "Cancel"}</span>`;
+      }
+
+      overlay.classList.remove("hidden");
+      overlay.classList.add("active");
+
+      const handleConfirm = () => {
+        this.closeConfirmModal();
+        if (typeof options.onConfirm === "function") {
+          options.onConfirm();
+        }
+      };
+
+      const handleCancel = () => {
+        this.closeConfirmModal();
+      };
+
+      if (okBtn) okBtn.onclick = handleConfirm;
+      if (cancelBtn) cancelBtn.onclick = handleCancel;
+      overlay.onclick = (e) => {
+        if (e.target === overlay) handleCancel();
+      };
+
+      if (cancelBtn) {
+        setTimeout(() => cancelBtn.focus(), 100);
+      }
+    },
+
+    closeConfirmModal: function () {
+      const overlay = document.getElementById("confirm-modal-overlay");
+      if (!overlay) return;
+      overlay.classList.remove("active");
+      setTimeout(() => {
+        overlay.classList.add("hidden");
+      }, 250);
     },
 
     /**
