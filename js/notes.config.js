@@ -99,9 +99,9 @@ const NOTE_JAR_CONFIG = {
     {
       id: "note-01",
       number: 1,
-      category: "Memories",
-      title: "Day 1",
-      prompt: "How it all started that afternoon...",
+      category: "Where It All Began",
+      title: "Where It All Began",
+      prompt: "How a random afternoon turned into meeting you...",
       color: "pink",
       symbol: "🌸",
       message: `'Twas during a cozy afternoon when my friend and I decided to go out just to catch up. After we finished our kwento, the thought of trying out Litmatch suddenly crossed my mind, so I decided to give it a shot. I joined the first voice game, and that's where I met you. At that time, I honestly had no expectations other than having a casual conversation with a random person.
@@ -117,9 +117,9 @@ It's funny how something so unexpected can turn into a memory worth keeping.
     {
       id: "note-02",
       number: 2,
-      category: "First Impressions",
-      title: "First Impressions",
-      prompt: "What I noticed about you early on...",
+      category: "The First Thing I Noticed",
+      title: "The Heart You Have",
+      prompt: "What stood out to me from the very beginning...",
       color: "peach",
       symbol: "✨",
       message: `My first impression of you was that you were someone who was very mahinhin, smart, fun to be around, and genuinely caring.
@@ -133,9 +133,9 @@ Never underestimate how special that part of you is.`,
     {
       id: "note-03",
       number: 3,
-      category: "Little Reminders",
-      title: "The Little Things",
-      prompt: "Ordinary moments that make me smile...",
+      category: "Quiet Nights & Little Things",
+      title: "Late-Night Calls & Quiet Comfort",
+      prompt: "The ordinary moments I've grown so fond of...",
       color: "lavender",
       symbol: "🌙",
       message: `Random VC nights have slowly become one of the little things I've grown fond of.
@@ -151,9 +151,9 @@ Sometimes, it's the simplest moments that become the most memorable.`,
     {
       id: "note-04",
       number: 4,
-      category: "Inside Jokes",
-      title: "5 AM Calls & Movie Nights",
-      prompt: "November 7, spam calls, and 'Ate Gab'...",
+      category: "Moments That Made Me Smile",
+      title: "5 AM Wake-Up Calls & 'Ate Gab'",
+      prompt: "November 7, spam calls, and our first movie night...",
       color: "blue",
       symbol: "🧸",
       message: `I don't think I'll ever forget that early Saturday morning, November 7, when I kept spam-calling you because you asked me to wake you up at 5 AM. HAHAHAHAHA!
@@ -169,9 +169,9 @@ I hope we get to make even more silly, random, and unforgettable memories along 
     {
       id: "note-05",
       number: 5,
-      category: "Open When",
-      title: "Whenever Things Feel Heavy",
-      prompt: "Just one call away whenever you need me...",
+      category: "For the Heavy Days",
+      title: "Just One Call Away",
+      prompt: "Whenever the world feels a little too loud...",
       color: "peach",
       symbol: "💌",
       message: `Whenever things get a little too heavy, when life becomes overwhelming, or when you simply feel like letting things out, I hope you remember that you have someone who's willing to listen.
@@ -187,9 +187,9 @@ And please remember, you don't have to go through everything alone.`,
     {
       id: "note-06",
       number: 6,
-      category: "Appreciation",
-      title: "Getting to Know You",
-      prompt: "What I've come to appreciate about you so far...",
+      category: "Everything You Are",
+      title: "Learning Your Story, Page by Page",
+      prompt: "Why getting to know you has been my favorite part...",
       color: "yellow",
       symbol: "☀️",
       message: `I genuinely appreciate and admire you for who you are.
@@ -210,9 +210,9 @@ I hope you never feel that you have to be anyone other than yourself around me.`
   // Unlocks ONLY after all 6 regular notes above have been opened.
   finalConfession: {
     id: "note-final",
-    category: "One Last Note",
-    title: "I Like You, Eli",
-    prompt: "Something I've been meaning to tell you...",
+    category: "From the Bottom of the Jar",
+    title: "What My Heart Wanted to Say",
+    prompt: "Something I've been meaning to tell you, Eli...",
     color: "gold-rose",
     symbol: "❤️",
     lockedMessage: "There's one more note waiting at the bottom of the jar...",
