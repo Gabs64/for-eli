@@ -8,7 +8,7 @@
 const NOTE_JAR_CONFIG = {
   // Website Metadata
   meta: {
-    siteTitle: "A Jar of Little Notes for Eli ✨",
+    siteTitle: "Gab's Little Notes for Eli",
     recipientName: "Eli",
     senderName: "Gab",
   },
