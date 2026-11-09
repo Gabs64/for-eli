@@ -1,47 +1,31 @@
-/**
- * VIRTUAL NOTE JAR - MAIN APPLICATION CONTROLLER
- * -------------------------------------------------------------
- * Initializes all components, coordinates state transitions,
- * floating particle backgrounds, progress updates, and user events.
- */
-
 document.addEventListener("DOMContentLoaded", () => {
   const App = {
     init: function () {
       console.log("Initializing Virtual Note Jar...");
 
-      // Apply site metadata
       this.applyConfig();
 
-      // Initialize subsystems
       if (window.StateManager) window.StateManager.init();
       if (window.AudioManager) window.AudioManager.init();
       if (window.JarManager) window.JarManager.init();
       if (window.NotesModalManager) window.NotesModalManager.init();
 
-      // Setup UI & Listeners
       this.bindUIEvents();
       this.subscribeToState();
       this.initBackgroundParticles();
       this.checkReducedMotion();
 
-      // Check initial screen routing (welcome vs jar)
       this.renderScreenState();
       this.updateProgressUI();
     },
 
-    /**
-     * Apply configuration texts and titles to DOM
-     */
     applyConfig: function () {
       const config = window.NOTE_JAR_CONFIG || {};
 
-      // Window title
       if (config.meta?.siteTitle) {
         document.title = config.meta.siteTitle;
       }
 
-      // Welcome Screen Texts
       const wBadge = document.getElementById("welcome-badge");
       const wTitle = document.getElementById("welcome-title");
       const wSubtitle = document.getElementById("welcome-subtitle");
@@ -54,18 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (wMsg && config.welcome?.message) wMsg.textContent = config.welcome.message;
       if (wBtn && config.welcome?.buttonText) wBtn.innerHTML = `<span>${config.welcome.buttonText}</span>`;
 
-      // Header sender name
       const headerTitle = document.getElementById("header-jar-title");
       if (headerTitle && config.meta?.senderName) {
         headerTitle.textContent = `${config.meta.senderName}'s Note Jar`;
       }
     },
 
-    /**
-     * Bind primary user interaction triggers
-     */
     bindUIEvents: function () {
-      // Start button on welcome screen
+
       const startBtn = document.getElementById("welcome-start-btn");
       if (startBtn) {
         startBtn.addEventListener("click", () => {
@@ -77,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Audio mute/unmute toggle button
       const audioBtn = document.getElementById("audio-toggle-btn");
       if (audioBtn) {
         audioBtn.addEventListener("click", () => {
@@ -87,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Reset jar button
       const resetBtn = document.getElementById("reset-jar-btn");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
@@ -107,9 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
 
-    /**
-     * Subscribe to state updates
-     */
     subscribeToState: function () {
       window.StateManager.subscribe((event, payload, state) => {
         switch (event) {
@@ -137,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
               window.JarManager.renderNotesInJar();
               window.JarManager.updateJarState();
             }
-            // Sparkle pulse effect
+
             if (window.NotesModalManager) {
               window.NotesModalManager.triggerConfetti();
             }
@@ -162,9 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
 
-    /**
-     * Switch between Welcome view and Jar view
-     */
     renderScreenState: function () {
       const state = window.StateManager.state;
       const welcomeScreen = document.getElementById("welcome-screen");
@@ -181,9 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
 
-    /**
-     * Update progress numbers, progress bar width, and status label
-     */
     updateProgressUI: function () {
       const config = window.NOTE_JAR_CONFIG || {};
       const regularNotes = config.notes || [];
@@ -195,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const barFillElem = document.getElementById("progress-bar-fill");
       const statusPillElem = document.getElementById("progress-status-pill");
 
-      // Calculate percentage of regular notes (0 to 100%)
       const percent = totalRegular > 0 ? Math.min(100, Math.round((openedCount / totalRegular) * 100)) : 0;
 
       if (countElem) {
@@ -224,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Update badge count on opened notes button
       const openedBadge = document.getElementById("opened-notes-count-badge");
       if (openedBadge) {
         const totalOpened = openedCount + (state.isFinalOpened ? 1 : 0);
@@ -233,9 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
 
-    /**
-     * Ambient floating background hearts and gentle light particles
-     */
     initBackgroundParticles: function () {
       const bgContainer = document.getElementById("floating-bg-particles");
       if (!bgContainer) return;
@@ -257,9 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
 
-    /**
-     * Check prefers-reduced-motion media query
-     */
     checkReducedMotion: function () {
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       const handleMotionPref = (mq) => {
@@ -277,4 +238,3 @@ document.addEventListener("DOMContentLoaded", () => {
   App.init();
   window.App = App;
 });
-

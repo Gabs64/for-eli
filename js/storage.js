@@ -1,20 +1,10 @@
-/**
- * VIRTUAL NOTE JAR - STORAGE MODULE
- * -------------------------------------------------------------
- * Safely persists recipient progress, opened notes, and audio
- * preferences to localStorage, with automatic in-memory fallback.
- */
-
 (function () {
   const STORAGE_KEY = "virtual_note_jar_progress_v1";
 
-  // In-memory fallback if localStorage is disabled, private browsing, etc.
   const memoryStore = {};
 
   const StorageManager = {
-    /**
-     * Test whether localStorage is available and functional
-     */
+
     isAvailable: function () {
       try {
         if (typeof window === "undefined" || !window.localStorage) {
@@ -29,9 +19,6 @@
       }
     },
 
-    /**
-     * Retrieve the stored state object
-     */
     getState: function () {
       try {
         if (this.isAvailable()) {
@@ -56,7 +43,6 @@
         console.error("StorageManager: Failed to read state from storage", err);
       }
 
-      // Default initial state
       return {
         hasStarted: false,
         openedNoteIds: [],
@@ -67,9 +53,6 @@
       };
     },
 
-    /**
-     * Save the entire state object
-     */
     saveState: function (state) {
       const dataToSave = {
         hasStarted: Boolean(state.hasStarted),
@@ -95,9 +78,6 @@
       }
     },
 
-    /**
-     * Clear all saved progress (for reset functionality)
-     */
     resetState: function () {
       try {
         if (this.isAvailable()) {
@@ -112,6 +92,5 @@
     },
   };
 
-  // Expose to window
   window.StorageManager = StorageManager;
 })();

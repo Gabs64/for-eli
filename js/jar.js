@@ -1,10 +1,3 @@
-/**
- * VIRTUAL NOTE JAR - JAR COMPONENT
- * -------------------------------------------------------------
- * Manages the illustrated glass jar, the folded notes nestled inside,
- * dynamic fullness updates as notes are opened, and the extraction trigger.
- */
-
 (function () {
   const JarManager = {
     jarElement: null,
@@ -39,40 +32,29 @@
       });
     },
 
-    /**
-     * Handle click or keyboard activation of the jar
-     */
     handleJarInteraction: function () {
       const state = window.StateManager.state;
 
-      // Guard: already animating or note modal currently open
       if (state.isAnimating || state.isNoteModalOpen) {
         return;
       }
 
-      // Check if all notes including final are already opened
       if (state.isFinalOpened) {
-        // Can open opened notes drawer or completion screen
+
         if (window.NotesModalManager) {
           window.NotesModalManager.showCompletionScreen();
         }
         return;
       }
 
-      // Determine which note to open
       const nextNote = window.StateManager.getNextAvailableNote();
       if (!nextNote) {
         return;
       }
 
-      // Start the extraction sequence!
       this.triggerExtraction(nextNote);
     },
 
-    /**
-     * Render the folded paper notes nestled inside the jar
-     * dynamically matching the remaining unopened notes
-     */
     renderNotesInJar: function () {
       if (!this.notesContainer) return;
       this.notesContainer.innerHTML = "";
@@ -81,7 +63,6 @@
       const unopenedNotes = window.StateManager.getUnopenedRegularNotes();
       const count = unopenedNotes.length;
 
-      // Color mapping for folded notes inside jar
       const colorMap = {
         pink: { bg: "#fda4af", border: "#f43f5e", shadow: "#e11d48" },
         yellow: { bg: "#fde047", border: "#eab308", shadow: "#ca8a04" },
@@ -91,7 +72,6 @@
         "gold-rose": { bg: "#fb7185", border: "#e11d48", shadow: "#be123c" },
       };
 
-      // If all regular notes are opened, render the glowing final note alone!
       if (state.isFinalUnlocked && !state.isFinalOpened) {
         const finalNoteElem = document.createElement("div");
         finalNoteElem.className = "jar-folded-note jar-final-note-preview";
@@ -106,8 +86,6 @@
         return;
       }
 
-      // Render folded notes based on count of remaining unopened notes
-      // We position them naturally within the bottom half of the jar
       const positions = [
         { bottom: "16px", left: "28px", rotate: "-15deg", zIndex: 1 },
         { bottom: "18px", right: "26px", rotate: "22deg", zIndex: 2 },
@@ -139,7 +117,6 @@
         this.notesContainer.appendChild(noteElem);
       });
 
-      // Also add tiny floating decorative stars/hearts inside jar for magical feel
       if (count > 0) {
         for (let i = 0; i < 3; i++) {
           const sparkle = document.createElement("div");
@@ -152,16 +129,12 @@
       }
     },
 
-    /**
-     * Update the visual states of the jar (prompts, glow, emptiness)
-     */
     updateJarState: function () {
       const state = window.StateManager.state;
       const config = window.NOTE_JAR_CONFIG || {};
 
       if (!this.jarElement) return;
 
-      // Remove existing status classes
       this.jarElement.classList.remove("has-final-unlocked", "is-completed", "is-shaking");
 
       if (state.isFinalOpened) {
@@ -191,25 +164,19 @@
       }
     },
 
-    /**
-     * Stage 1 & 2: Animate folded note floating out of jar
-     */
     triggerExtraction: function (noteData) {
       const state = window.StateManager.state;
       state.isAnimating = true;
 
-      // Play soft extraction sound effect
       if (window.AudioManager) {
         window.AudioManager.playPaperExtractSound();
       }
 
-      // Gentle wobble animation on jar
       this.jarElement.classList.add("jar-active-wobble");
       setTimeout(() => {
         this.jarElement.classList.remove("jar-active-wobble");
       }, 600);
 
-      // Locate or create the extracting note element
       const extractingNote = document.createElement("div");
       extractingNote.className = `extracting-note-token note-color-${noteData.color || "pink"}`;
       if (noteData.isFinal) {
@@ -223,19 +190,16 @@
         </div>
       `;
 
-      // Position relative to jar
       const jarRect = this.jarElement.getBoundingClientRect();
       extractingNote.style.left = `${jarRect.left + jarRect.width / 2 - 25}px`;
       extractingNote.style.top = `${jarRect.top + jarRect.height * 0.45}px`;
 
       document.body.appendChild(extractingNote);
 
-      // Trigger floating extraction keyframes
       requestAnimationFrame(() => {
         extractingNote.classList.add("float-up-and-center");
       });
 
-      // After extraction animation completes, transfer to unfolding modal
       const extractionDuration = noteData.isFinal ? 1000 : 750;
       setTimeout(() => {
         if (document.body.contains(extractingNote)) {
@@ -243,7 +207,6 @@
         }
         state.isAnimating = false;
 
-        // Open the full unfolding paper modal
         if (window.NotesModalManager) {
           window.NotesModalManager.openNoteModal(noteData);
         }
@@ -253,4 +216,3 @@
 
   window.JarManager = JarManager;
 })();
-

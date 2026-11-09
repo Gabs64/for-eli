@@ -1,37 +1,24 @@
-/**
- * VIRTUAL NOTE JAR - CONFIGURATION FILE
- * -------------------------------------------------------------
- * Personalized for Eli from Gab.
- * All personal messages, notes, and the final confession are here.
- */
-
 const NOTE_JAR_CONFIG = {
-  // Website Metadata
+
   meta: {
     siteTitle: "Gab's Little Notes for Eli",
     recipientName: "Eli",
     senderName: "Gab",
   },
 
-  // Note Opening Mode:
-  // "sequential" - Notes open in predetermined order (Building the story to Note 7)
-  // "random"     - Recipient draws random unopened notes until all are unlocked
   openingMode: "sequential",
 
-  // Audio & Sound Effects
   audio: {
     enabled: true,
-    autoPlayPrompt: true, // Will request audio toggle on first tap
-    soundEffects: true,   // Subtle paper rustle, pop, chimes
+    autoPlayPrompt: true,
+    soundEffects: true,
     musicVolume: 0.35,
     soundVolume: 0.5,
-    // Custom audio paths if you supply real MP3s in assets/audio/
-    // If not supplied, soothing procedural Web Audio synthesizer plays automatically!
+
     backgroundMusicUrl: "assets/audio/background-music.mp3",
     paperSoundUrl: "assets/audio/paper-sound.mp3",
   },
 
-  // Welcome Screen
   welcome: {
     badge: "",
     title: "For Eli",
@@ -41,7 +28,6 @@ const NOTE_JAR_CONFIG = {
     jarPreviewNote: "Tap to reach inside",
   },
 
-  // Main Jar Screen Texts
   jarScreen: {
     tapInstruction: "Tap the jar to pick a note",
     jarEmptyInstruction: "You've read all the notes so far",
@@ -49,7 +35,6 @@ const NOTE_JAR_CONFIG = {
     resetButton: "Start Over",
   },
 
-  // Note Categories & Matching Visual Colors
   categories: {
     "Memories": {
       name: "Memories",
@@ -93,8 +78,6 @@ const NOTE_JAR_CONFIG = {
     },
   },
 
-  // Regular Notes List (6 Notes leading up to the final confession)
-  // The final confession note MUST NOT be included here.
   notes: [
     {
       id: "note-01",
@@ -206,8 +189,6 @@ I hope you never feel that you have to be anyone other than yourself around me.`
     },
   ],
 
-  // Special Final Confession Note (Note 7)
-  // Unlocks ONLY after all 6 regular notes above have been opened.
   finalConfession: {
     id: "note-final",
     category: "From the Bottom of the Jar",
@@ -233,7 +214,6 @@ Whatever happens from here, I'm genuinely grateful that a random decision to joi
 **I'm glad I got to meet you, Eli. And I hope this is only the beginning of many more memories we get to share.** ❤️`,
   },
 
-  // Completion Screen Settings
   completion: {
     badge: "All Read",
     title: "That's All of Them, Eli",
@@ -244,7 +224,6 @@ Whatever happens from here, I'm genuinely grateful that a random decision to joi
   },
 };
 
-// Export to window object for standalone browser compatibility
 if (typeof window !== "undefined") {
   window.NOTE_JAR_CONFIG = NOTE_JAR_CONFIG;
 }

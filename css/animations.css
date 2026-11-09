@@ -1,13 +1,3 @@
-/**
- * VIRTUAL NOTE JAR - ANIMATION DEFINITIONS
- * -------------------------------------------------------------
- * Physics, Keyframes, Jar extraction sequences, 3D paper unfolding,
- * particle flows, and reduced-motion accessibility overrides.
- */
-
-/* =============================================================
-   AMBIENT & FLOATING KEYFRAMES
-   ============================================================= */
 @keyframes floatAmbient {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -106,9 +96,7 @@
   }
 }
 
-/* =============================================================
-   JAR INTERACTION & WOBBLE (FR-003)
-   ============================================================= */
+
 @keyframes jarWobble {
   0% {
     transform: rotate(0deg);
@@ -130,11 +118,7 @@
   }
 }
 
-/* =============================================================
-   NOTE EXTRACTION ANIMATION (FR-004)
-   Stage 1: Selection & Upward extraction
-   Stage 2: Gliding to screen center and scaling up
-   ============================================================= */
+
 .float-up-and-center {
   animation: extractAndCenter 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
 }
@@ -149,17 +133,17 @@
     opacity: 1;
   }
   35% {
-    /* Stage 2: Floats out through the neck of the jar */
+
     transform: translate(0, -180px) scale(1.15) rotate(-8deg);
     opacity: 1;
   }
   70% {
-    /* Stage 3: En route to screen center */
+
     opacity: 1;
     transform: translate(calc(50vw - 50% - 100px), calc(45vh - 50% - 80px)) scale(1.6) rotate(6deg);
   }
   100% {
-    /* Stage 4: Reaches screen center ready to unfold */
+
     position: fixed;
     top: 50% !important;
     left: 50% !important;
@@ -190,9 +174,7 @@
   }
 }
 
-/* =============================================================
-   PAPER UNFOLDING & FOLDING (FR-004, FR-005, FR-006)
-   ============================================================= */
+
 .note-card.unfolding {
   animation: paperUnfold 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-origin: center center;
@@ -231,9 +213,7 @@
   }
 }
 
-/* =============================================================
-   SIDEBAR / DRAWER ANIMATIONS
-   ============================================================= */
+
 @keyframes drawerItemSlideIn {
   0% {
     opacity: 0;
@@ -279,9 +259,7 @@
   animation: notesBtnPulse 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* =============================================================
-   CONFETTI RAIN (FR-012)
-   ============================================================= */
+
 @keyframes confettiFall {
   0% {
     transform: translateY(0) rotate(0deg) scale(0.8);
@@ -296,9 +274,7 @@
   }
 }
 
-/* =============================================================
-   REDUCED MOTION ACCESSIBILITY (FR-019, Section 10)
-   ============================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -331,4 +307,3 @@
     to { opacity: 1; }
   }
 }
-

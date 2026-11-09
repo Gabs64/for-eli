@@ -1,10 +1,3 @@
-/**
- * VIRTUAL NOTE JAR - NOTES & MODAL MANAGER
- * -------------------------------------------------------------
- * Manages the paper-style unfolding modal, text formatting,
- * final confession special reveal effects, and the opened notes drawer.
- */
-
 (function () {
   const NotesModalManager = {
     modalOverlay: null,
@@ -22,13 +15,12 @@
     },
 
     bindEvents: function () {
-      // Close modal on close button click
+
       const closeBtn = document.getElementById("modal-close-btn");
       if (closeBtn) {
         closeBtn.addEventListener("click", () => this.closeNoteModal());
       }
 
-      // Close modal on clicking outside background overlay
       if (this.modalOverlay) {
         this.modalOverlay.addEventListener("click", (e) => {
           if (e.target === this.modalOverlay) {
@@ -37,7 +29,6 @@
         });
       }
 
-      // Escape key closes confirm modal, note modal, or drawer
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           const confirmOverlay = document.getElementById("confirm-modal-overlay");
@@ -51,7 +42,6 @@
         }
       });
 
-      // Drawer open/close buttons
       const openDrawerBtn = document.getElementById("view-opened-notes-btn");
       if (openDrawerBtn) {
         openDrawerBtn.addEventListener("click", () => {
@@ -76,9 +66,6 @@
       }
     },
 
-    /**
-     * Open and animate the paper-style message modal
-     */
     openNoteModal: function (noteData, isRevisit = false) {
       if (!this.modalOverlay || !this.cardElement) return;
 
@@ -89,10 +76,8 @@
       state.isNoteModalOpen = true;
       state.currentActiveNote = noteData;
 
-      // Populate content safely (using textContent to prevent any XSS)
       this.populateCardContent(noteData);
 
-      // Play unfolding chime sound
       if (window.AudioManager) {
         if (noteData.isFinal) {
           window.AudioManager.playFinalRevealSound();
@@ -101,7 +86,6 @@
         }
       }
 
-      // Set theme classes
       this.cardElement.className = "note-card paper-texture";
       if (noteData.color) {
         this.cardElement.classList.add(`card-color-${noteData.color}`);
@@ -112,12 +96,10 @@
         this.triggerConfetti();
       }
 
-      // Show overlay and trigger unfold animation
       this.modalOverlay.classList.remove("hidden");
       this.modalOverlay.classList.add("active");
       this.cardElement.classList.add("unfolding");
 
-      // Trap focus in modal for accessibility
       const closeBtn = document.getElementById("modal-close-btn");
       if (closeBtn) {
         setTimeout(() => closeBtn.focus(), 300);
@@ -128,9 +110,6 @@
       }, 600);
     },
 
-    /**
-     * Safely format paragraphs into the modal card
-     */
     populateCardContent: function (note) {
       const categoryElem = document.getElementById("modal-category-badge");
       const titleElem = document.getElementById("modal-note-title");
@@ -173,7 +152,6 @@
         sealElem.textContent = note.symbol || (note.isFinal ? "💖" : "✨");
       }
 
-      // Format message into paragraphs cleanly
       if (bodyElem) {
         bodyElem.innerHTML = "";
         const rawMessage = note.message || "";
@@ -183,7 +161,7 @@
           const trimmed = paraText.trim();
           if (trimmed.length > 0) {
             const p = document.createElement("p");
-            // Also handle single newlines inside paragraph with br and **bold** text
+
             const lines = trimmed.split("\n");
             lines.forEach((line, idx) => {
               const parts = line.split(/(\*\*.*?\*\*)/g);
@@ -206,14 +184,10 @@
       }
     },
 
-    /**
-     * Close the paper modal and update progression
-     */
     closeNoteModal: function () {
       if (this.isClosing || !this.modalOverlay || !this.cardElement) return;
       this.isClosing = true;
 
-      // Play soft pop sound
       if (window.AudioManager) {
         window.AudioManager.playPopSound();
       }
@@ -233,18 +207,15 @@
         this.currentNote = null;
         this.isClosing = false;
 
-        // If not just revisiting from the drawer, record as opened!
         if (closedNote && !this.isRevisit) {
           window.StateManager.markNoteAsOpened(closedNote.id);
         }
 
-        // Return focus to jar
         const jar = document.getElementById("virtual-jar");
         if (jar) {
           jar.focus();
         }
 
-        // If this was the final note, check if we should display completion modal
         if (closedNote && closedNote.isFinal) {
           setTimeout(() => {
             this.showCompletionScreen();
@@ -253,9 +224,6 @@
       }, 350);
     },
 
-    /**
-     * Show Completion Screen modal / view
-     */
     showCompletionScreen: function () {
       const compOverlay = document.getElementById("completion-modal-overlay");
       if (!compOverlay) return;
@@ -274,7 +242,6 @@
 
       this.triggerConfetti();
 
-      // Hook up completion action buttons
       const browseBtn = document.getElementById("completion-browse-btn");
       if (browseBtn) {
         browseBtn.onclick = () => {
@@ -309,9 +276,6 @@
       }
     },
 
-    /**
-     * Custom Styled Confirmation Modal (replaces native window.confirm)
-     */
     showConfirmModal: function (options = {}) {
       const overlay = document.getElementById("confirm-modal-overlay");
       if (!overlay) return;
@@ -368,9 +332,6 @@
       }, 250);
     },
 
-    /**
-     * Opened Notes Drawer / Memory Box
-     */
     openOpenedNotesDrawer: function () {
       if (!this.drawerOverlay) return;
 
@@ -381,7 +342,6 @@
       this.renderOpenedNotesList();
       this.drawerOverlay.classList.remove("hidden", "closing");
 
-      // Force browser reflow so CSS slide-in transition always plays smoothly
       void this.drawerOverlay.offsetWidth;
       this.drawerOverlay.classList.add("active");
 
@@ -425,7 +385,6 @@
         return;
       }
 
-      // Render all opened regular notes with staggered entrance animation
       openedNotes.forEach((note, index) => {
         const item = document.createElement("button");
         item.className = `opened-note-item color-${note.color || "pink"}`;
@@ -455,7 +414,6 @@
         listContainer.appendChild(item);
       });
 
-      // If final confession is opened, display it prominently at the bottom
       if (state.isFinalOpened && config.finalConfession) {
         const finalItem = document.createElement("button");
         finalItem.className = "opened-note-item item-final-confession";
@@ -486,9 +444,6 @@
       }
     },
 
-    /**
-     * Confetti & Sparkles Particle Generator
-     */
     triggerConfetti: function () {
       const container = document.getElementById("confetti-container");
       if (!container) return;
@@ -519,4 +474,3 @@
 
   window.NotesModalManager = NotesModalManager;
 })();
-

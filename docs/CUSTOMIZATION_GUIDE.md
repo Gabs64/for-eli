@@ -28,7 +28,7 @@ In `js/notes.config.js`, find the `meta` section:
 
 ```javascript
 meta: {
-  siteTitle: "A Jar of Little Notes for You ✨",
+  siteTitle: "A Jar of Little Notes for You",
   recipientName: "Eli",           // Appears in header as "Eli's Note Jar"
   senderName: "With all my love",
 },

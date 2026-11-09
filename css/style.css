@@ -1,12 +1,5 @@
-/**
- * VIRTUAL NOTE JAR - CORE STYLESHEET
- * -------------------------------------------------------------
- * Design System, CSS Variables, Typography, Layout, Glass Jar,
- * Paper Note Cards, Modal, and Floating Elements.
- */
-
 :root {
-  /* Warm Natural Stationery Color Palette */
+
   --bg-primary: #fbf7f4;
   --bg-secondary: #f6ede8;
   --bg-surface: #ffffff;
@@ -28,23 +21,23 @@
   --accent-blue: #60859e;
   --accent-blue-light: #eaf1f6;
 
-  /* Paper Palette */
+
   --paper-cream: #fdfaf5;
   --paper-border: #ece2d6;
   --paper-shadow: 0 18px 40px -14px rgba(74, 52, 44, 0.14), 0 4px 14px rgba(74, 52, 44, 0.06);
   --paper-shadow-hover: 0 22px 45px -12px rgba(74, 52, 44, 0.18), 0 6px 16px rgba(74, 52, 44, 0.08);
 
-  /* Glass Jar */
+
   --jar-glass-tint: rgba(255, 255, 255, 0.48);
   --jar-glass-border: rgba(180, 148, 136, 0.3);
   --jar-reflection: rgba(255, 255, 255, 0.85);
 
-  /* Typography */
+
   --font-serif: "Playfair Display", "Georgia", "Times New Roman", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-handwriting: "Caveat", "Dancing Script", "Segoe Print", "Bradley Hand", cursive, serif;
 
-  /* Spacing & Radii */
+
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
@@ -52,9 +45,7 @@
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* =============================================================
-   RESET & BASE STYLES
-   ============================================================= */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -83,7 +74,7 @@ body.final-reveal-active {
   background: radial-gradient(circle at 50% 30%, #fffaf7 0%, #f8ebe9 55%, #f2dede 100%);
 }
 
-/* Accessible focus outlines */
+
 button:focus-visible, a:focus-visible {
   outline: 3px solid var(--accent-rose);
   outline-offset: 3px;
@@ -96,9 +87,7 @@ button {
   background: none;
 }
 
-/* =============================================================
-   FLOATING AMBIENT PARTICLES
-   ============================================================= */
+
 .ambient-particle-container {
   position: fixed;
   inset: 0;
@@ -113,9 +102,7 @@ button {
   animation: floatAmbient linear infinite;
 }
 
-/* =============================================================
-   TOP NAVIGATION & HEADER
-   ============================================================= */
+
 .app-header {
   position: relative;
   z-index: 10;
@@ -185,9 +172,7 @@ button {
   border-radius: var(--radius-full);
 }
 
-/* =============================================================
-   MAIN CONTAINER
-   ============================================================= */
+
 .main-wrapper {
   position: relative;
   z-index: 5;
@@ -206,9 +191,7 @@ button {
   display: none !important;
 }
 
-/* =============================================================
-   WELCOME SCREEN (FR-001)
-   ============================================================= */
+
 .welcome-card {
   text-align: center;
   background: rgba(255, 253, 250, 0.9);
@@ -292,9 +275,7 @@ button {
   transform: translateY(0) scale(0.98);
 }
 
-/* =============================================================
-   PROGRESS BAR & STATUS (FR-009)
-   ============================================================= */
+
 .progress-panel {
   width: 100%;
   max-width: 460px;
@@ -358,9 +339,7 @@ button {
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* =============================================================
-   VIRTUAL GLASS JAR DISPLAY (FR-002, FR-003, FR-010)
-   ============================================================= */
+
 .jar-stage {
   position: relative;
   display: flex;
@@ -400,7 +379,7 @@ button {
   animation: haloGoldenGlow 3s ease-in-out infinite;
 }
 
-/* Glass Jar Interactive Container */
+
 .virtual-jar-container {
   position: relative;
   width: 250px;
@@ -424,7 +403,7 @@ button {
   animation: jarWobble 0.6s ease-in-out !important;
 }
 
-/* SVG Glass Jar Details */
+
 .jar-svg-artwork {
   position: absolute;
   inset: 0;
@@ -435,7 +414,7 @@ button {
   filter: drop-shadow(0 16px 24px rgba(92, 64, 51, 0.14));
 }
 
-/* Notes nestled inside the jar */
+
 .jar-notes-pile {
   position: absolute;
   bottom: 22px;
@@ -448,7 +427,7 @@ button {
   border-radius: 0 0 45px 45px;
 }
 
-/* Folded Origami Paper Tokens Inside Jar */
+
 .jar-folded-note {
   position: absolute;
   width: 58px;
@@ -478,14 +457,14 @@ button {
   border-radius: inherit;
 }
 
-/* Colors of folded notes */
+
 .note-color-pink .folded-paper { background: #fae8ea; border-color: #e5b8bd; }
 .note-color-yellow .folded-paper { background: #fbf0d9; border-color: #e6cb94; }
 .note-color-lavender .folded-paper { background: #efeaf4; border-color: #cbbcd9; }
 .note-color-blue .folded-paper { background: #e6f0f5; border-color: #b3cddb; }
 .note-color-peach .folded-paper { background: #fbeddf; border-color: #e5c3a3; }
 
-/* Final Note Inside Jar */
+
 .jar-final-note-preview {
   bottom: 25px !important;
   left: 50% !important;
@@ -511,7 +490,7 @@ button {
   animation: pulseGlow 1.8s ease-in-out infinite;
 }
 
-/* Tiny Sparkles inside jar */
+
 .jar-sparkle {
   position: absolute;
   width: 6px;
@@ -523,7 +502,7 @@ button {
   animation: twinkleSparkle 2s ease-in-out infinite;
 }
 
-/* Jar Base Shadow */
+
 .jar-base-shadow {
   position: absolute;
   bottom: -15px;
@@ -537,7 +516,7 @@ button {
   animation: shadowBreathe 4s ease-in-out infinite;
 }
 
-/* Jar Prompt / Status Text Below Jar */
+
 .jar-status-panel {
   margin-top: 1.75rem;
   text-align: center;
@@ -576,7 +555,7 @@ button {
   color: var(--accent-rose-dark);
 }
 
-/* Bottom Controls */
+
 .bottom-controls-bar {
   margin-top: 2rem;
   display: flex;
@@ -608,9 +587,7 @@ button {
   transform: translateY(-1px);
 }
 
-/* =============================================================
-   EXTRACTION TOKEN (FR-004)
-   ============================================================= */
+
 .extracting-note-token {
   position: fixed;
   width: 65px;
@@ -640,9 +617,7 @@ button {
   box-shadow: 0 0 25px rgba(244, 63, 94, 0.8);
 }
 
-/* =============================================================
-   PAPER-STYLE MESSAGE MODAL (FR-005, FR-006, FR-012)
-   ============================================================= */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -679,15 +654,15 @@ button {
   overflow: hidden;
 }
 
-/* Paper texture simulation */
+
 .paper-texture {
-  background-image: 
+  background-image:
     radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
     repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(210, 195, 180, 0.18) 28px);
   background-size: 100% 100%, 100% 28px;
 }
 
-/* Washi tape on top of paper */
+
 .paper-tape-seal {
   position: absolute;
   top: -10px;
@@ -857,14 +832,14 @@ button {
   box-shadow: 0 6px 16px rgba(179, 82, 89, 0.35);
 }
 
-/* Card Themes */
+
 .card-color-pink { border-top: 3px solid #e5b8bd; }
 .card-color-yellow { border-top: 3px solid #e6cb94; }
 .card-color-lavender { border-top: 3px solid #cbbcd9; }
 .card-color-blue { border-top: 3px solid #b3cddb; }
 .card-color-peach { border-top: 3px solid #e5c3a3; }
 
-/* Final Confession Special Styling (FR-012) */
+
 .card-final-confession {
   background: linear-gradient(180deg, #fffdf9 0%, #fbf3f2 100%);
   border: 1px solid #e5c5c7;
@@ -886,9 +861,7 @@ button {
   font-size: 2rem;
 }
 
-/* =============================================================
-   OPENED NOTES DRAWER (FR-006, 7.3)
-   ============================================================= */
+
 .drawer-overlay {
   position: fixed;
   inset: 0;
@@ -1035,9 +1008,7 @@ button {
   margin-bottom: 0.75rem;
 }
 
-/* =============================================================
-   COMPLETION MODAL OVERLAY (FR-013)
-   ============================================================= */
+
 .completion-card {
   text-align: center;
   background: rgba(255, 253, 250, 0.96);
@@ -1051,9 +1022,7 @@ button {
   position: relative;
 }
 
-/* =============================================================
-   CUSTOM CONFIRMATION MODAL
-   ============================================================= */
+
 .confirm-overlay {
   z-index: 280;
 }
@@ -1139,9 +1108,7 @@ button {
   gap: 0.75rem;
 }
 
-/* =============================================================
-   CONFETTI CONTAINER (FR-012)
-   ============================================================= */
+
 .confetti-container {
   position: fixed;
   inset: 0;
@@ -1171,8 +1138,7 @@ button {
   clip-path: path("M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z");
 }
 
-/* Utility Hidden */
+
 .hidden {
   display: none !important;
 }
-

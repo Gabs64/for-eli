@@ -8,17 +8,17 @@
     content="A personalized interactive digital gift jar containing meaningful notes and a special confession.">
   <title>Gab's Little Jar Notes for Eli</title>
 
-  <!-- Favicon -->
+
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
-  <!-- Google Fonts (Playfair Display for romantic serif headings, Caveat for handwriting) -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap"
     rel="stylesheet">
 
-  <!-- Stylesheets -->
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
@@ -26,13 +26,13 @@
 
 <body>
 
-  <!-- Background Ambient Floating Elements -->
+
   <div id="floating-bg-particles" class="ambient-particle-container" aria-hidden="true"></div>
 
-  <!-- Confetti Container -->
+
   <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
 
-  <!-- App Header -->
+
   <header class="app-header">
     <div class="header-brand">
       <span class="brand-icon">🫙</span>
@@ -40,12 +40,12 @@
     </div>
 
     <div class="header-actions">
-      <!-- Audio Toggle Button -->
+
       <button id="audio-toggle-btn" class="btn-icon-text" type="button" aria-label="Toggle background audio">
         <span class="audio-label">Sound On</span>
       </button>
 
-      <!-- View Opened Notes Button -->
+
       <button id="view-opened-notes-btn" class="btn-icon-text" type="button" aria-label="View opened notes">
         <span>Notes</span>
         <span id="opened-notes-count-badge" class="count-pill" style="display: none;">0</span>
@@ -53,10 +53,10 @@
     </div>
   </header>
 
-  <!-- Main Content Area -->
+
   <main class="main-wrapper">
 
-    <!-- SCREEN 1: WELCOME SCREEN (FR-001) -->
+
     <section id="welcome-screen" class="welcome-card" aria-label="Welcome Invitation">
       <div class="welcome-preview-jar" aria-hidden="true">🫙</div>
       <h2 id="welcome-title" class="welcome-title">For Eli</h2>
@@ -70,10 +70,10 @@
       </button>
     </section>
 
-    <!-- SCREEN 2: MAIN JAR SCREEN (FR-002, FR-003, FR-009, FR-010) -->
+
     <section id="main-jar-app" class="jar-stage screen-hidden" aria-label="Interactive Virtual Note Jar">
 
-      <!-- Progress Bar (FR-009) -->
+
       <div class="progress-panel" aria-label="Note Progress">
         <div class="progress-header-row">
           <span id="progress-count-text" class="progress-count-label">0 of 6 notes opened</span>
@@ -85,20 +85,20 @@
         </div>
       </div>
 
-      <!-- Virtual Jar Container -->
+
       <div class="jar-stage-wrapper">
         <div id="jar-glow-halo" class="jar-glow-halo"></div>
 
         <div id="virtual-jar" class="virtual-jar-container" role="button" tabindex="0"
           aria-label="Virtual Note Jar. Click or press Enter to draw a note.">
 
-          <!-- Notes nestled inside the jar (dynamically rendered) -->
+
           <div id="jar-notes-pile" class="jar-notes-pile"></div>
 
-          <!-- Glass Jar SVG Vector Artwork -->
+
           <svg class="jar-svg-artwork" viewBox="0 0 250 350" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <!-- Glass Shading & Highlights -->
+
               <linearGradient id="jarBodyGlass" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#ffffff" stop-opacity="0.62" />
                 <stop offset="14%" stop-color="#f7f4f0" stop-opacity="0.18" />
@@ -107,7 +107,7 @@
                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0.65" />
               </linearGradient>
 
-              <!-- Cork Wooden Gradient -->
+
               <linearGradient id="corkWood" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#9c6644" />
                 <stop offset="30%" stop-color="#b08968" />
@@ -115,14 +115,14 @@
                 <stop offset="100%" stop-color="#7f5539" />
               </linearGradient>
 
-              <!-- Glass Edge Glow -->
+
               <linearGradient id="glassEdge" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#e6dcd3" stop-opacity="0.9" />
                 <stop offset="50%" stop-color="#ffffff" stop-opacity="0.95" />
                 <stop offset="100%" stop-color="#d5bdaf" stop-opacity="0.85" />
               </linearGradient>
 
-              <!-- Ribbon / Twine Gradient -->
+
               <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#c97a7e" />
                 <stop offset="50%" stop-color="#e09f9f" />
@@ -130,65 +130,65 @@
               </linearGradient>
             </defs>
 
-            <!-- Cork Stopper -->
+
             <path d="M78 28 L172 28 L164 54 L86 54 Z" fill="url(#corkWood)" stroke="#7f5539" stroke-width="1.2" />
-            <!-- Cork Top Lid Cap -->
+
             <rect x="72" y="16" width="106" height="13" rx="4" fill="url(#corkWood)" stroke="#7f5539"
               stroke-width="1.2" />
 
-            <!-- Glass Neck & Lip -->
+
             <rect x="65" y="52" width="120" height="12" rx="5" fill="rgba(255, 255, 255, 0.5)" stroke="url(#glassEdge)"
               stroke-width="1.8" />
 
-            <!-- Tied Ribbon & Bow Around Jar Neck -->
+
             <rect x="76" y="62" width="98" height="5" rx="2" fill="url(#ribbonGrad)" />
-            <!-- Ribbon Bow & Tag -->
+
             <ellipse cx="125" cy="64.5" rx="4.5" ry="3.5" fill="#9e5054" />
             <path d="M125 64.5 Q110 57 105 64.5 Q115 70 125 65.5 Z" fill="url(#ribbonGrad)" />
             <path d="M125 64.5 Q140 57 145 64.5 Q135 70 125 65.5 Z" fill="url(#ribbonGrad)" />
-            <!-- Hanging Tag Heart -->
+
             <path d="M125 68 L125 80" stroke="#c97a7e" stroke-width="1.2" stroke-dasharray="2 1" />
             <path
               d="M125 81 C123 79, 119 79, 119 82 C119 85, 125 88, 125 88 C125 88, 131 85, 131 82 C131 79, 127 79, 125 81 Z"
               fill="#c97a7e" />
 
-            <!-- Main Glass Jar Silhouette -->
-            <path d="M80 66 
-                     C55 75, 22 95, 22 135 
-                     L22 285 
-                     C22 318, 55 332, 125 332 
-                     C195 332, 228 318, 228 285 
-                     L228 135 
-                     C228 95, 195 75, 170 66 
+
+            <path d="M80 66
+                     C55 75, 22 95, 22 135
+                     L22 285
+                     C22 318, 55 332, 125 332
+                     C195 332, 228 318, 228 285
+                     L228 135
+                     C228 95, 195 75, 170 66
                      Z" fill="url(#jarBodyGlass)" stroke="url(#glassEdge)" stroke-width="2" />
 
-            <!-- Left Curving Glass Reflection Highlight -->
+
             <path d="M38 130 Q30 200 36 280" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none"
               opacity="0.7" filter="blur(1px)" />
 
             <path d="M48 140 Q42 205 46 270" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" fill="none"
               opacity="0.45" />
 
-            <!-- Right Glossy Specular Highlight -->
+
             <path d="M212 130 Q220 200 214 275" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"
               opacity="0.55" />
 
-            <!-- Bottom Glass Rim Reflection Curve -->
+
             <path d="M50 316 Q125 330 200 316" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"
               opacity="0.65" />
           </svg>
 
-          <!-- Shadow underneath the jar -->
+
           <div class="jar-base-shadow"></div>
         </div>
 
-        <!-- Jar status prompt (FR-003, FR-011) -->
+
         <div id="jar-status-prompt" class="jar-status-panel">
           <p class="status-msg">Tap the jar to pick a note</p>
           <span class="status-sub">6 notes left</span>
         </div>
 
-        <!-- Bottom Controls -->
+
         <div class="bottom-controls-bar">
           <button id="reset-jar-btn" class="btn-secondary" type="button" aria-label="Reset jar progress">
             <span>↺</span>
@@ -201,19 +201,17 @@
 
   </main>
 
-  <!-- =============================================================
-       NOTE MODAL CARD (FR-004, FR-005, FR-006, FR-012)
-       ============================================================= -->
+
   <div id="note-modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="modal-note-title">
     <div id="note-card" class="note-card paper-texture">
-      <!-- Washi tape at top -->
+
       <div class="paper-tape-seal" aria-hidden="true"></div>
 
-      <!-- Close icon button -->
+
       <button id="modal-close-btn" class="modal-close-button" type="button" aria-label="Close Note">✕</button>
 
-      <!-- Stationery Letterhead Header -->
+
       <div class="note-letterhead">
         <div class="modal-header-meta">
           <span id="modal-category-badge" class="category-tag">Where It All Began</span>
@@ -221,13 +219,13 @@
           <span id="modal-note-number" class="note-seq-number">No. 01 of 06</span>
         </div>
 
-        <!-- Note Title -->
+
         <h3 id="modal-note-title" class="note-title-heading">A Note For You</h3>
 
-        <!-- Note Opening Prompt Quote -->
+
         <p id="modal-note-prompt" class="note-prompt-quote">"A little memory for you..."</p>
 
-        <!-- Ornamental Divider Rule -->
+
         <div class="letterhead-ornament" aria-hidden="true">
           <span class="ornament-line"></span>
           <span id="modal-header-ornament-icon" class="ornament-symbol">✦</span>
@@ -235,12 +233,12 @@
         </div>
       </div>
 
-      <!-- Note Message Body -->
+
       <div id="modal-note-body" class="note-body-scrollable">
         <p>Loading message content...</p>
       </div>
 
-      <!-- Footer with wax seal & close button -->
+
       <div class="note-card-footer">
         <span id="modal-wax-seal" class="wax-seal-symbol" aria-hidden="true">🌸</span>
         <button id="modal-card-bottom-close" class="btn-card-close" type="button"
@@ -251,9 +249,7 @@
     </div>
   </div>
 
-  <!-- =============================================================
-       OPENED NOTES DRAWER (FR-006, 7.3)
-       ============================================================= -->
+
   <div id="opened-notes-drawer" class="drawer-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="drawer-title">
     <div class="drawer-panel">
@@ -264,14 +260,12 @@
       </div>
 
       <div id="drawer-notes-list" class="drawer-notes-list">
-        <!-- Opened notes dynamically populated here -->
+
       </div>
     </div>
   </div>
 
-  <!-- =============================================================
-       COMPLETION SCREEN MODAL (FR-013)
-       ============================================================= -->
+
   <div id="completion-modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="completion-title">
     <div class="completion-card">
@@ -299,9 +293,7 @@
     </div>
   </div>
 
-  <!-- =============================================================
-       CUSTOM CONFIRMATION MODAL
-       ============================================================= -->
+
   <div id="confirm-modal-overlay" class="modal-overlay confirm-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="confirm-modal-title">
     <div class="confirm-card paper-texture">
@@ -322,7 +314,7 @@
     </div>
   </div>
 
-  <!-- Scripts in dependency order -->
+
   <script src="js/notes.config.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/audio.js"></script>

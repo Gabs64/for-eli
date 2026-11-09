@@ -1,15 +1,8 @@
-/**
- * VIRTUAL NOTE JAR - STATE MANAGEMENT
- * -------------------------------------------------------------
- * Central state store managing note progression, unlocking rules,
- * current modal state, and event notifications.
- */
-
 (function () {
   const listeners = [];
 
   const StateManager = {
-    // Current runtime state
+
     state: {
       hasStarted: false,
       openingMode: "sequential",
@@ -34,7 +27,6 @@
       this.state.isCompleted = Boolean(saved.isCompleted);
       this.state.audioMuted = Boolean(saved.audioMuted);
 
-      // Verify unlocking condition independently
       this.checkFinalNoteUnlock();
     },
 
@@ -67,18 +59,12 @@
       }
     },
 
-    /**
-     * Start the journey from welcome screen
-     */
     startExperience: function () {
       this.state.hasStarted = true;
       this.save();
       this.notify("started");
     },
 
-    /**
-     * Verify and update final note unlock status
-     */
     checkFinalNoteUnlock: function () {
       const config = window.NOTE_JAR_CONFIG || {};
       const regularNotes = config.notes || [];
@@ -97,35 +83,26 @@
       return this.state.isFinalUnlocked;
     },
 
-    /**
-     * Get array of opened regular note objects
-     */
     getOpenedRegularNotes: function () {
       const config = window.NOTE_JAR_CONFIG || {};
       const regularNotes = config.notes || [];
       return regularNotes.filter((note) => this.state.openedNoteIds.includes(note.id));
     },
 
-    /**
-     * Get array of remaining unopened regular note objects
-     */
     getUnopenedRegularNotes: function () {
       const config = window.NOTE_JAR_CONFIG || {};
       const regularNotes = config.notes || [];
       return regularNotes.filter((note) => !this.state.openedNoteIds.includes(note.id));
     },
 
-    /**
-     * Determine next note to draw based on openingMode
-     */
     getNextAvailableNote: function () {
-      // If all regular notes are opened, check if final note is available
+
       if (this.state.isFinalUnlocked) {
         if (!this.state.isFinalOpened) {
           const config = window.NOTE_JAR_CONFIG || {};
           return { ...config.finalConfession, isFinal: true };
         }
-        return null; // All done!
+        return null;
       }
 
       const unopened = this.getUnopenedRegularNotes();
@@ -138,13 +115,9 @@
         return unopened[randomIndex];
       }
 
-      // Default: Sequential Mode (first unopened note in sequence)
       return unopened[0];
     },
 
-    /**
-     * Mark regular note as opened after reading and closing modal
-     */
     markNoteAsOpened: function (noteId) {
       if (!noteId) return;
 
@@ -167,9 +140,6 @@
       }
     },
 
-    /**
-     * Reset everything to beginning
-     */
     resetProgress: function () {
       this.state.hasStarted = false;
       this.state.openedNoteIds = [];
@@ -190,4 +160,3 @@
 
   window.StateManager = StateManager;
 })();
-
