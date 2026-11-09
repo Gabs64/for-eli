@@ -145,10 +145,11 @@
 
       if (numberElem) {
         if (note.number) {
-          numberElem.textContent = `${note.number} / 6`;
+          const padded = String(note.number).padStart(2, "0");
+          numberElem.textContent = `No. ${padded} of 06`;
           numberElem.classList.remove("hidden");
         } else if (note.isFinal) {
-          numberElem.textContent = "Last Note";
+          numberElem.textContent = "No. 07 · Final Letter";
           numberElem.classList.remove("hidden");
         } else {
           numberElem.classList.add("hidden");

@@ -724,49 +724,86 @@ button {
   transform: rotate(90deg);
 }
 
+.note-letterhead {
+  text-align: center;
+  padding: 0.25rem 1.5rem 0;
+  margin-bottom: 1.15rem;
+}
+
 .modal-header-meta {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(201, 100, 107, 0.22);
 }
 
 .category-tag {
-  display: inline-block;
-  padding: 0.28rem 0.85rem;
-  border-radius: var(--radius-full);
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  background: var(--accent-rose-light);
+  letter-spacing: 0.02em;
   color: var(--accent-rose-dark);
-  border: 1px solid rgba(201, 100, 107, 0.2);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.meta-divider {
+  color: rgba(158, 71, 78, 0.45);
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .note-seq-number {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-light);
 }
 
 .note-title-heading {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 1.9rem;
   line-height: 1.25;
   color: var(--text-main);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
 }
 
 .note-prompt-quote {
   font-family: var(--font-handwriting);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--accent-rose-dark);
-  margin-bottom: 1.25rem;
-  line-height: 1.4;
+  margin-bottom: 0.9rem;
+  line-height: 1.35;
+}
+
+.letterhead-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180, 140, 130, 0.45), transparent);
+}
+
+.ornament-symbol {
+  font-size: 0.75rem;
+  color: var(--accent-rose);
+  opacity: 0.75;
+  line-height: 1;
 }
 
 .note-body-scrollable {
@@ -836,9 +873,12 @@ button {
 }
 
 .card-final-confession .category-tag {
-  background: #f5dfe1;
   color: #9e474e;
-  box-shadow: none;
+  font-weight: 600;
+}
+
+.card-final-confession .modal-header-meta {
+  border-bottom-color: rgba(158, 71, 78, 0.35);
 }
 
 .card-final-confession .note-title-heading {
