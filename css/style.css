@@ -274,21 +274,36 @@ a:focus-visible {
   font-weight: 600;
 }
 
-.card-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.35;
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem 0.5rem 1.75rem;
+  flex-grow: 1;
 }
 
-.card-prompt {
-  font-size: 0.9rem;
+.final-grid-card .card-content {
+  padding: 1.1rem 0.5rem 1.35rem;
+}
+
+.card-icon {
+  font-size: 1.85rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.card-icon-locked {
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.card-hint {
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .card-footer {

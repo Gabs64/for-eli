@@ -39,18 +39,27 @@
         }
 
         const paddedNum = String(note.number || index + 1).padStart(2, "0");
+        const prevPaddedNum = String(index).padStart(2, "0");
 
         let badgeHtml = "";
         let actionHtml = "";
+        let iconHtml = "";
+        let hintHtml = "";
 
         if (isOpened) {
           badgeHtml = '<span class="status-badge badge-read">Read ✓</span>';
+          iconHtml = '<span class="card-icon">✉</span>';
+          hintHtml = '<span class="card-hint">Opened</span>';
           actionHtml = '<span class="card-action">Re-read &rarr;</span>';
         } else if (isReady) {
           badgeHtml = '<span class="status-badge badge-ready">Ready</span>';
+          iconHtml = '<span class="card-icon">✉</span>';
+          hintHtml = '<span class="card-hint">Tap to open and read</span>';
           actionHtml = '<span class="card-action">Open note &rarr;</span>';
         } else {
           badgeHtml = '<span class="status-badge badge-locked">Locked</span>';
+          iconHtml = '<span class="card-icon card-icon-locked">🔒</span>';
+          hintHtml = `<span class="card-hint">Unlocks after Note ${prevPaddedNum}</span>`;
           actionHtml = '<span class="card-action text-locked">Locked</span>';
         }
 
@@ -59,8 +68,10 @@
             <span class="card-label">Note ${paddedNum}</span>
             ${badgeHtml}
           </div>
-          <h3 class="card-title">${note.title || "Note"}</h3>
-          <p class="card-prompt">${note.prompt || ""}</p>
+          <div class="card-content">
+            ${iconHtml}
+            ${hintHtml}
+          </div>
           <div class="card-footer">
             ${actionHtml}
           </div>
@@ -117,19 +128,23 @@
 
       let badgeHtml = "";
       let actionHtml = "";
-      let descHtml = "";
+      let iconHtml = "";
+      let hintHtml = "";
 
       if (isOpened) {
         badgeHtml = '<span class="status-badge badge-read">Read ✓</span>';
-        descHtml = finalNote.prompt || "Something I've been meaning to tell you...";
+        iconHtml = '<span class="card-icon">💌</span>';
+        hintHtml = '<span class="card-hint">Opened</span>';
         actionHtml = '<span class="card-action">Re-read letter &rarr;</span>';
       } else if (isReady) {
         badgeHtml = '<span class="status-badge badge-final-ready">One Last Note</span>';
-        descHtml = finalNote.unlockedMessage || "There's one last note at the bottom. Open it whenever you're ready.";
+        iconHtml = '<span class="card-icon">💌</span>';
+        hintHtml = '<span class="card-hint">Open whenever you\'re ready</span>';
         actionHtml = '<span class="card-action">Open final letter &rarr;</span>';
       } else {
         badgeHtml = '<span class="status-badge badge-locked">Locked</span>';
-        descHtml = "Unlocks after reading notes 01 through 06.";
+        iconHtml = '<span class="card-icon card-icon-locked">🔒</span>';
+        hintHtml = '<span class="card-hint">Unlocks after reading notes 01 through 06</span>';
         actionHtml = '<span class="card-action text-locked">Locked</span>';
       }
 
@@ -138,8 +153,10 @@
           <span class="card-label">Special Note</span>
           ${badgeHtml}
         </div>
-        <h3 class="card-title">${isLocked ? "One Last Note" : (finalNote.title || "One Last Note")}</h3>
-        <p class="card-prompt">${descHtml}</p>
+        <div class="card-content">
+          ${iconHtml}
+          ${hintHtml}
+        </div>
         <div class="card-footer">
           ${actionHtml}
         </div>
@@ -169,4 +186,3 @@
 
   window.CardsManager = CardsManager;
 })();
-
