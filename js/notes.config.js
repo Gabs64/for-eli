@@ -1,7 +1,7 @@
 const NOTE_JAR_CONFIG = {
 
   meta: {
-    siteTitle: "Gab's Little Notes for Eli",
+    siteTitle: "Capstone Demo",
     recipientName: "Eli",
     senderName: "Gab",
   },
