@@ -2,23 +2,30 @@
   const NotesModalManager = {
     modalOverlay: null,
     cardElement: null,
-    drawerOverlay: null,
+    completionOverlay: null,
+    confirmOverlay: null,
     currentNote: null,
+    isRevisit: false,
     isClosing: false,
 
     init: function () {
       this.modalOverlay = document.getElementById("note-modal-overlay");
       this.cardElement = document.getElementById("note-card");
-      this.drawerOverlay = document.getElementById("opened-notes-drawer");
+      this.completionOverlay = document.getElementById("completion-modal-overlay");
+      this.confirmOverlay = document.getElementById("confirm-modal-overlay");
 
       this.bindEvents();
     },
 
     bindEvents: function () {
-
       const closeBtn = document.getElementById("modal-close-btn");
       if (closeBtn) {
         closeBtn.addEventListener("click", () => this.closeNoteModal());
+      }
+
+      const bottomCloseBtn = document.getElementById("modal-card-bottom-close");
+      if (bottomCloseBtn) {
+        bottomCloseBtn.addEventListener("click", () => this.closeNoteModal());
       }
 
       if (this.modalOverlay) {
@@ -29,41 +36,51 @@
         });
       }
 
+      const compBrowseBtn = document.getElementById("completion-browse-btn");
+      if (compBrowseBtn) {
+        compBrowseBtn.addEventListener("click", () => this.closeCompletionModal());
+      }
+
+      const compCloseBtn = document.getElementById("completion-close-btn");
+      if (compCloseBtn) {
+        compCloseBtn.addEventListener("click", () => this.closeCompletionModal());
+      }
+
+      const compReplayBtn = document.getElementById("completion-replay-btn");
+      if (compReplayBtn) {
+        compReplayBtn.addEventListener("click", () => {
+          this.closeCompletionModal();
+          this.showConfirmModal({
+            title: "Start over?",
+            message: "This will reset your reading progress so you can experience opening the notes again from the beginning.",
+            confirmText: "Yes, Start Over",
+            cancelText: "Cancel",
+            onConfirm: () => {
+              window.StateManager.resetProgress();
+            },
+          });
+        });
+      }
+
+      if (this.completionOverlay) {
+        this.completionOverlay.addEventListener("click", (e) => {
+          if (e.target === this.completionOverlay) {
+            this.closeCompletionModal();
+          }
+        });
+      }
+
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-          const confirmOverlay = document.getElementById("confirm-modal-overlay");
-          if (confirmOverlay && confirmOverlay.classList.contains("active")) {
+          if (this.confirmOverlay && this.confirmOverlay.classList.contains("active")) {
             this.closeConfirmModal();
-          } else if (window.StateManager.state.isNoteModalOpen) {
+          } else if (this.completionOverlay && this.completionOverlay.classList.contains("active")) {
+            this.closeCompletionModal();
+          } else if (this.modalOverlay && this.modalOverlay.classList.contains("active")) {
             this.closeNoteModal();
-          } else if (this.isDrawerOpen()) {
-            this.closeOpenedNotesDrawer();
           }
         }
       });
-
-      const openDrawerBtn = document.getElementById("view-opened-notes-btn");
-      if (openDrawerBtn) {
-        openDrawerBtn.addEventListener("click", () => {
-          openDrawerBtn.classList.remove("notes-btn-clicked");
-          void openDrawerBtn.offsetWidth;
-          openDrawerBtn.classList.add("notes-btn-clicked");
-          this.openOpenedNotesDrawer();
-        });
-      }
-
-      const closeDrawerBtn = document.getElementById("drawer-close-btn");
-      if (closeDrawerBtn) {
-        closeDrawerBtn.addEventListener("click", () => this.closeOpenedNotesDrawer());
-      }
-
-      if (this.drawerOverlay) {
-        this.drawerOverlay.addEventListener("click", (e) => {
-          if (e.target === this.drawerOverlay) {
-            this.closeOpenedNotesDrawer();
-          }
-        });
-      }
     },
 
     openNoteModal: function (noteData, isRevisit = false) {
@@ -87,68 +104,36 @@
       }
 
       this.cardElement.className = "note-card";
-      if (noteData.color) {
-        this.cardElement.classList.add(`card-color-${noteData.color}`);
-      }
       if (noteData.isFinal) {
         this.cardElement.classList.add("card-final-confession");
-        document.body.classList.add("final-reveal-active");
-        this.triggerConfetti();
       }
 
       this.modalOverlay.classList.remove("hidden");
       this.modalOverlay.classList.add("active");
-      this.cardElement.classList.add("unfolding");
 
       const closeBtn = document.getElementById("modal-close-btn");
       if (closeBtn) {
-        setTimeout(() => closeBtn.focus(), 300);
+        setTimeout(() => closeBtn.focus(), 150);
       }
-
-      setTimeout(() => {
-        this.cardElement.classList.remove("unfolding");
-      }, 600);
     },
 
     populateCardContent: function (note) {
-      const categoryElem = document.getElementById("modal-category-badge");
-      const titleElem = document.getElementById("modal-note-title");
-      const promptElem = document.getElementById("modal-note-prompt");
-      const bodyElem = document.getElementById("modal-note-body");
-      const sealElem = document.getElementById("modal-wax-seal");
       const numberElem = document.getElementById("modal-note-number");
-
-      if (categoryElem) {
-        categoryElem.textContent = note.category || "Little Note";
-      }
+      const titleElem = document.getElementById("modal-note-title");
+      const bodyElem = document.getElementById("modal-note-body");
 
       if (numberElem) {
-        if (note.number) {
+        if (note.isFinal) {
+          numberElem.textContent = "Special Note";
+        } else if (note.number) {
           numberElem.textContent = `Note ${note.number} of 6`;
-          numberElem.classList.remove("hidden");
-        } else if (note.isFinal) {
-          numberElem.textContent = "Final Note";
-          numberElem.classList.remove("hidden");
         } else {
-          numberElem.classList.add("hidden");
+          numberElem.textContent = "";
         }
       }
 
       if (titleElem) {
         titleElem.textContent = note.title || "A Note For You";
-      }
-
-      if (promptElem) {
-        if (note.prompt) {
-          promptElem.textContent = `"${note.prompt}"`;
-          promptElem.classList.remove("hidden");
-        } else {
-          promptElem.classList.add("hidden");
-        }
-      }
-
-      if (sealElem) {
-        sealElem.textContent = note.symbol || (note.isFinal ? "💖" : "✨");
       }
 
       if (bodyElem) {
@@ -160,8 +145,8 @@
           const trimmed = paraText.trim();
           if (trimmed.length > 0) {
             const p = document.createElement("p");
-
             const lines = trimmed.split("\n");
+
             lines.forEach((line, idx) => {
               const parts = line.split(/(\*\*.*?\*\*)/g);
               parts.forEach((part) => {
@@ -173,10 +158,12 @@
                   p.appendChild(document.createTextNode(part));
                 }
               });
+
               if (idx < lines.length - 1) {
                 p.appendChild(document.createElement("br"));
               }
             });
+
             bodyElem.appendChild(p);
           }
         });
@@ -184,111 +171,81 @@
     },
 
     closeNoteModal: function () {
-      if (this.isClosing || !this.modalOverlay || !this.cardElement) return;
+      if (this.isClosing || !this.modalOverlay) return;
       this.isClosing = true;
 
       if (window.AudioManager) {
         window.AudioManager.playPopSound();
       }
 
-      this.cardElement.classList.add("folding-closed");
       this.modalOverlay.classList.remove("active");
 
       setTimeout(() => {
         this.modalOverlay.classList.add("hidden");
-        this.cardElement.classList.remove("folding-closed");
-        document.body.classList.remove("final-reveal-active");
 
         const state = window.StateManager.state;
         state.isNoteModalOpen = false;
 
         const closedNote = this.currentNote;
+        const wasRevisit = this.isRevisit;
+
         this.currentNote = null;
         this.isClosing = false;
 
-        if (closedNote && !this.isRevisit) {
+        if (closedNote && !wasRevisit) {
           window.StateManager.markNoteAsOpened(closedNote.id);
-        }
-
-        const jar = document.getElementById("virtual-jar");
-        if (jar) {
-          jar.focus();
         }
 
         if (closedNote && closedNote.isFinal) {
           setTimeout(() => {
             this.showCompletionScreen();
-          }, 800);
+          }, 350);
         }
-      }, 350);
+      }, 200);
     },
 
     showCompletionScreen: function () {
-      const compOverlay = document.getElementById("completion-modal-overlay");
-      if (!compOverlay) return;
+      if (!this.completionOverlay) return;
 
       const config = window.NOTE_JAR_CONFIG?.completion || {};
       const titleElem = document.getElementById("completion-title");
-      const msgElem = document.getElementById("completion-message");
       const subElem = document.getElementById("completion-subtitle");
+      const msgElem = document.getElementById("completion-message");
 
-      if (titleElem) titleElem.textContent = config.title || "You've Found Every Note!";
-      if (subElem) subElem.textContent = config.subtitle || "";
-      if (msgElem) msgElem.textContent = config.message || "";
+      if (titleElem && config.title) titleElem.textContent = config.title;
+      if (subElem && config.subtitle) subElem.textContent = config.subtitle;
+      if (msgElem && config.message) msgElem.textContent = config.message;
 
-      compOverlay.classList.remove("hidden");
-      compOverlay.classList.add("active");
-
-      this.triggerConfetti();
+      this.completionOverlay.classList.remove("hidden");
+      this.completionOverlay.classList.add("active");
 
       const browseBtn = document.getElementById("completion-browse-btn");
       if (browseBtn) {
-        browseBtn.onclick = () => {
-          compOverlay.classList.remove("active");
-          compOverlay.classList.add("hidden");
-          this.openOpenedNotesDrawer();
-        };
-      }
-
-      const replayBtn = document.getElementById("completion-replay-btn");
-      if (replayBtn) {
-        replayBtn.onclick = () => {
-          this.showConfirmModal({
-            title: "Put Notes Back in the Jar?",
-            message: "Would you like to fold all the notes back inside and open them again from the beginning?",
-            confirmText: "Yes, Start Over",
-            onConfirm: () => {
-              compOverlay.classList.remove("active");
-              compOverlay.classList.add("hidden");
-              window.StateManager.resetProgress();
-            },
-          });
-        };
-      }
-
-      const closeCompBtn = document.getElementById("completion-close-btn");
-      if (closeCompBtn) {
-        closeCompBtn.onclick = () => {
-          compOverlay.classList.remove("active");
-          compOverlay.classList.add("hidden");
-        };
+        setTimeout(() => browseBtn.focus(), 150);
       }
     },
 
+    closeCompletionModal: function () {
+      if (!this.completionOverlay) return;
+      this.completionOverlay.classList.remove("active");
+      setTimeout(() => {
+        this.completionOverlay.classList.add("hidden");
+      }, 200);
+    },
+
     showConfirmModal: function (options = {}) {
-      const overlay = document.getElementById("confirm-modal-overlay");
-      if (!overlay) return;
+      if (!this.confirmOverlay) return;
 
       const titleElem = document.getElementById("confirm-modal-title");
       const msgElem = document.getElementById("confirm-modal-message");
       const okBtn = document.getElementById("confirm-ok-btn");
       const cancelBtn = document.getElementById("confirm-cancel-btn");
 
-      if (titleElem) titleElem.textContent = options.title || "Put Notes Back in the Jar?";
+      if (titleElem) titleElem.textContent = options.title || "Start over?";
       if (msgElem) {
         msgElem.textContent =
           options.message ||
-          "This will fold all the notes back inside the jar so you can open them again from the beginning.";
+          "This will reset your reading progress so you can experience opening the notes again from the beginning.";
       }
       if (okBtn) {
         okBtn.innerHTML = `<span>${options.confirmText || "Yes, Start Over"}</span>`;
@@ -297,8 +254,8 @@
         cancelBtn.innerHTML = `<span>${options.cancelText || "Cancel"}</span>`;
       }
 
-      overlay.classList.remove("hidden");
-      overlay.classList.add("active");
+      this.confirmOverlay.classList.remove("hidden");
+      this.confirmOverlay.classList.add("active");
 
       const handleConfirm = () => {
         this.closeConfirmModal();
@@ -313,8 +270,8 @@
 
       if (okBtn) okBtn.onclick = handleConfirm;
       if (cancelBtn) cancelBtn.onclick = handleCancel;
-      overlay.onclick = (e) => {
-        if (e.target === overlay) handleCancel();
+      this.confirmOverlay.onclick = (e) => {
+        if (e.target === this.confirmOverlay) handleCancel();
       };
 
       if (cancelBtn) {
@@ -323,151 +280,11 @@
     },
 
     closeConfirmModal: function () {
-      const overlay = document.getElementById("confirm-modal-overlay");
-      if (!overlay) return;
-      overlay.classList.remove("active");
+      if (!this.confirmOverlay) return;
+      this.confirmOverlay.classList.remove("active");
       setTimeout(() => {
-        overlay.classList.add("hidden");
-      }, 250);
-    },
-
-    openOpenedNotesDrawer: function () {
-      if (!this.drawerOverlay) return;
-
-      if (window.AudioManager) {
-        window.AudioManager.playPopSound();
-      }
-
-      this.renderOpenedNotesList();
-      this.drawerOverlay.classList.remove("hidden", "closing");
-
-      void this.drawerOverlay.offsetWidth;
-      this.drawerOverlay.classList.add("active");
-
-      const closeBtn = document.getElementById("drawer-close-btn");
-      if (closeBtn) {
-        setTimeout(() => closeBtn.focus(), 200);
-      }
-    },
-
-    closeOpenedNotesDrawer: function () {
-      if (!this.drawerOverlay) return;
-      this.drawerOverlay.classList.remove("active");
-      this.drawerOverlay.classList.add("closing");
-      setTimeout(() => {
-        this.drawerOverlay.classList.remove("closing");
-        this.drawerOverlay.classList.add("hidden");
-      }, 320);
-    },
-
-    isDrawerOpen: function () {
-      return this.drawerOverlay && this.drawerOverlay.classList.contains("active");
-    },
-
-    renderOpenedNotesList: function () {
-      const listContainer = document.getElementById("drawer-notes-list");
-      if (!listContainer) return;
-      listContainer.innerHTML = "";
-
-      const state = window.StateManager.state;
-      const openedNotes = window.StateManager.getOpenedRegularNotes();
-      const config = window.NOTE_JAR_CONFIG || {};
-
-      if (openedNotes.length === 0 && !state.isFinalOpened) {
-        listContainer.innerHTML = `
-          <div class="empty-drawer-state">
-            <span class="empty-icon">🫙</span>
-            <p>You haven't opened any notes yet!</p>
-            <small>Tap the jar to draw your first note.</small>
-          </div>
-        `;
-        return;
-      }
-
-      openedNotes.forEach((note, index) => {
-        const item = document.createElement("button");
-        item.className = `opened-note-item color-${note.color || "pink"}`;
-        item.setAttribute("type", "button");
-        item.style.animationDelay = `${0.08 + index * 0.055}s`;
-        item.innerHTML = `
-          <div class="item-left">
-            <span class="item-symbol">${note.symbol || "✨"}</span>
-            <div class="item-text">
-              <span class="item-category">${note.category}</span>
-              <h4 class="item-title">${note.title}</h4>
-            </div>
-          </div>
-          <span class="item-action">Read ➔</span>
-        `;
-
-        item.addEventListener("click", () => {
-          item.classList.add("item-selecting");
-          setTimeout(() => {
-            this.closeOpenedNotesDrawer();
-          }, 140);
-          setTimeout(() => {
-            this.openNoteModal(note, true);
-          }, 380);
-        });
-
-        listContainer.appendChild(item);
-      });
-
-      if (state.isFinalOpened && config.finalConfession) {
-        const finalItem = document.createElement("button");
-        finalItem.className = "opened-note-item item-final-confession";
-        finalItem.setAttribute("type", "button");
-        finalItem.style.animationDelay = `${0.08 + openedNotes.length * 0.055}s`;
-        finalItem.innerHTML = `
-          <div class="item-left">
-            <span class="item-symbol">❤️</span>
-            <div class="item-text">
-              <span class="item-category">One Last Note</span>
-              <h4 class="item-title">${config.finalConfession.title}</h4>
-            </div>
-          </div>
-          <span class="item-action">Re-read ➔</span>
-        `;
-
-        finalItem.addEventListener("click", () => {
-          finalItem.classList.add("item-selecting");
-          setTimeout(() => {
-            this.closeOpenedNotesDrawer();
-          }, 140);
-          setTimeout(() => {
-            this.openNoteModal({ ...config.finalConfession, isFinal: true }, true);
-          }, 380);
-        });
-
-        listContainer.appendChild(finalItem);
-      }
-    },
-
-    triggerConfetti: function () {
-      const container = document.getElementById("confetti-container");
-      if (!container) return;
-
-      const colors = ["#e5b8bd", "#c9646b", "#e6cb94", "#cbbcd9", "#f5dfe1", "#f9eaec"];
-      const shapes = ["circle", "heart"];
-
-      for (let i = 0; i < 24; i++) {
-        const confetti = document.createElement("div");
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        confetti.className = `confetti-piece shape-${shape}`;
-        confetti.style.left = `${Math.random() * 100}vw`;
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDuration = `${3 + Math.random() * 2.5}s`;
-        confetti.style.animationDelay = `${Math.random() * 0.8}s`;
-        confetti.style.transform = `scale(${0.55 + Math.random() * 0.65}) rotate(${Math.random() * 360}deg)`;
-
-        container.appendChild(confetti);
-
-        setTimeout(() => {
-          if (container.contains(confetti)) {
-            container.removeChild(confetti);
-          }
-        }, 5500);
-      }
+        this.confirmOverlay.classList.add("hidden");
+      }, 200);
     },
   };
 

@@ -191,13 +191,13 @@ I hope you never feel that you have to be anyone other than yourself around me.`
 
   finalConfession: {
     id: "note-final",
-    category: "From the Bottom of the Jar",
+    category: "Special Note",
     title: "What My Heart Wanted to Say",
     prompt: "Something I've been meaning to tell you, Eli...",
     color: "gold-rose",
     symbol: "❤️",
-    lockedMessage: "There's one more note waiting at the bottom of the jar...",
-    unlockedMessage: "There's one last note at the bottom. Open it whenever you're ready.",
+    lockedMessage: "Unlocks after reading notes 01 through 06.",
+    unlockedMessage: "There's one last note. Open it whenever you're ready.",
     badgeText: "One Last Note",
     message: `There's one thing I've been wanting to tell you, and that is: **I like you, Eli.**
 
@@ -219,8 +219,8 @@ Whatever happens from here, I'm genuinely grateful that a random decision to joi
     title: "That's All of Them, Eli",
     subtitle: "I hope reading these brought a little smile to your face.",
     message: "You can look back at any of the notes whenever you feel like it.",
-    reviewButtonText: "Read Notes Again",
-    replayButtonText: "Put Notes Back in the Jar",
+    reviewButtonText: "Revisit Notes",
+    replayButtonText: "Start Over",
   },
 };
 

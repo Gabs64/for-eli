@@ -13,16 +13,13 @@
   <meta name="twitter:title" content="Capstone Demo">
   <meta name="twitter:description" content="Capstone Demo">
 
-
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
     rel="stylesheet">
-
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -31,176 +28,51 @@
 
 <body>
 
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span id="header-site-title" class="brand-title">Gab's Notes</span>
+      </div>
 
-  <div id="floating-bg-particles" class="ambient-particle-container" aria-hidden="true"></div>
+      <div class="header-actions">
+        <button id="audio-toggle-btn" class="btn-subtle" type="button" aria-label="Toggle background audio">
+          <span class="audio-icon">🎵</span>
+          <span class="audio-label">Sound On</span>
+        </button>
 
-
-  <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
-
-
-  <header class="app-header">
-    <div class="header-brand">
-      <h1 id="header-jar-title" class="brand-title">Gab's Note Jar</h1>
-    </div>
-
-    <div class="header-actions">
-
-      <button id="audio-toggle-btn" class="btn-icon-text" type="button" aria-label="Toggle background audio">
-        <span class="audio-label">Sound On</span>
-      </button>
-
-
-      <button id="view-opened-notes-btn" class="btn-icon-text" type="button" aria-label="View opened notes">
-        <span>Notes</span>
-        <span id="opened-notes-count-badge" class="count-pill" style="display: none;">0</span>
-      </button>
+        <button id="reset-jar-btn" class="btn-subtle" type="button" aria-label="Start over">
+          <span>Start Over</span>
+        </button>
+      </div>
     </div>
   </header>
 
+  <main class="main-container">
 
-  <main class="main-wrapper">
-
-
-    <section id="welcome-screen" class="welcome-card" aria-label="Welcome Invitation">
-      <h2 id="welcome-title" class="welcome-title">For Eli</h2>
-      <p id="welcome-subtitle" class="welcome-subtitle">A few notes I put together for you.</p>
-      <p id="welcome-message" class="welcome-message">
-        I made this little jar of notes for you—filled with a few memories, small things I appreciate, and thoughts I
-        wanted to share. Take your time and open them one by one.
+    <section class="hero-section">
+      <span class="hero-tag">A note collection</span>
+      <h1 class="hero-title">For Eli</h1>
+      <p class="hero-desc">
+        A few memories, thoughts, and little things I wanted to share with you. Open them one by one whenever you have time.
       </p>
-      <button id="welcome-start-btn" class="btn-primary-large" type="button">
-        <span>Open the Jar</span>
-      </button>
-    </section>
 
-
-    <section id="main-jar-app" class="jar-stage screen-hidden" aria-label="Interactive Virtual Note Jar">
-
-
-      <div class="progress-panel" aria-label="Note Progress">
-        <div class="progress-header-row">
-          <span id="progress-count-text" class="progress-count-label">0 of 6 notes opened</span>
+      <div class="progress-box">
+        <div class="progress-meta">
+          <span id="progress-count-text">0 of 6 notes read</span>
         </div>
         <div class="progress-bar-track">
-          <div id="progress-bar-fill" class="progress-bar-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100"></div>
+          <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
         </div>
       </div>
+    </section>
 
+    <section class="notes-grid-section">
+      <div id="notes-grid" class="notes-grid"></div>
 
-      <div class="jar-stage-wrapper">
-        <div id="virtual-jar" class="virtual-jar-container" role="button" tabindex="0"
-          aria-label="Virtual Note Jar. Click or press Enter to draw a note.">
-
-
-          <div id="jar-notes-pile" class="jar-notes-pile"></div>
-
-
-          <svg class="jar-svg-artwork" viewBox="0 0 250 350" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-
-              <linearGradient id="jarBodyGlass" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.62" />
-                <stop offset="14%" stop-color="#f7f4f0" stop-opacity="0.18" />
-                <stop offset="50%" stop-color="#ffffff" stop-opacity="0.06" />
-                <stop offset="86%" stop-color="#f7f4f0" stop-opacity="0.18" />
-                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.65" />
-              </linearGradient>
-
-
-              <linearGradient id="corkWood" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#9c6644" />
-                <stop offset="30%" stop-color="#b08968" />
-                <stop offset="70%" stop-color="#ddb892" />
-                <stop offset="100%" stop-color="#7f5539" />
-              </linearGradient>
-
-
-              <linearGradient id="glassEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#e6dcd3" stop-opacity="0.9" />
-                <stop offset="50%" stop-color="#ffffff" stop-opacity="0.95" />
-                <stop offset="100%" stop-color="#d5bdaf" stop-opacity="0.85" />
-              </linearGradient>
-
-
-              <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#c97a7e" />
-                <stop offset="50%" stop-color="#e09f9f" />
-                <stop offset="100%" stop-color="#b56569" />
-              </linearGradient>
-            </defs>
-
-
-            <path d="M78 28 L172 28 L164 54 L86 54 Z" fill="url(#corkWood)" stroke="#7f5539" stroke-width="1.2" />
-
-            <rect x="72" y="16" width="106" height="13" rx="4" fill="url(#corkWood)" stroke="#7f5539"
-              stroke-width="1.2" />
-
-
-            <rect x="65" y="52" width="120" height="12" rx="5" fill="rgba(255, 255, 255, 0.5)" stroke="url(#glassEdge)"
-              stroke-width="1.8" />
-
-
-            <rect x="76" y="62" width="98" height="5" rx="2" fill="url(#ribbonGrad)" />
-
-            <ellipse cx="125" cy="64.5" rx="4.5" ry="3.5" fill="#9e5054" />
-            <path d="M125 64.5 Q110 57 105 64.5 Q115 70 125 65.5 Z" fill="url(#ribbonGrad)" />
-            <path d="M125 64.5 Q140 57 145 64.5 Q135 70 125 65.5 Z" fill="url(#ribbonGrad)" />
-
-            <path d="M125 68 L125 80" stroke="#c97a7e" stroke-width="1.2" stroke-dasharray="2 1" />
-            <path
-              d="M125 81 C123 79, 119 79, 119 82 C119 85, 125 88, 125 88 C125 88, 131 85, 131 82 C131 79, 127 79, 125 81 Z"
-              fill="#c97a7e" />
-
-
-            <path d="M80 66
-                     C55 75, 22 95, 22 135
-                     L22 285
-                     C22 318, 55 332, 125 332
-                     C195 332, 228 318, 228 285
-                     L228 135
-                     C228 95, 195 75, 170 66
-                     Z" fill="url(#jarBodyGlass)" stroke="url(#glassEdge)" stroke-width="2" />
-
-
-            <path d="M38 130 Q30 200 36 280" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none"
-              opacity="0.7" filter="blur(1px)" />
-
-            <path d="M48 140 Q42 205 46 270" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" fill="none"
-              opacity="0.45" />
-
-
-            <path d="M212 130 Q220 200 214 275" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"
-              opacity="0.55" />
-
-
-            <path d="M50 316 Q125 330 200 316" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"
-              opacity="0.65" />
-          </svg>
-
-
-          <div class="jar-base-shadow"></div>
-        </div>
-
-
-        <div id="jar-status-prompt" class="jar-status-panel">
-          <p class="status-msg">Tap the jar to pick a note</p>
-          <span class="status-sub">6 notes left</span>
-        </div>
-
-
-        <div class="bottom-controls-bar">
-          <button id="reset-jar-btn" class="btn-secondary" type="button" aria-label="Reset jar progress">
-            <span>↺</span>
-            <span>Start Over</span>
-          </button>
-        </div>
-
-      </div>
+      <div id="final-note-container" class="final-note-wrapper"></div>
     </section>
 
   </main>
-
 
   <div id="note-modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="modal-note-title">
@@ -217,64 +89,19 @@
       </div>
 
       <div class="note-card-footer">
-        <button id="modal-card-bottom-close" class="btn-card-close" type="button"
-          onclick="window.NotesModalManager.closeNoteModal()">
-          <span>Close</span>
+        <button id="modal-card-bottom-close" class="btn-card-close" type="button">
+          <span>Done</span>
         </button>
       </div>
     </div>
   </div>
-
-
-  <div id="opened-notes-drawer" class="drawer-overlay hidden" role="dialog" aria-modal="true"
-    aria-labelledby="drawer-title">
-    <div class="drawer-panel">
-      <div class="drawer-header">
-        <h3 id="drawer-title" class="drawer-title">Opened Notes</h3>
-        <button id="drawer-close-btn" class="modal-close-button" type="button"
-          aria-label="Close Opened Notes">✕</button>
-      </div>
-
-      <div id="drawer-notes-list" class="drawer-notes-list">
-
-      </div>
-    </div>
-  </div>
-
-
-  <div id="completion-modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true"
-    aria-labelledby="completion-title">
-    <div class="completion-card">
-      <h3 id="completion-title" class="completion-title">That's All of Them, Eli</h3>
-      <p id="completion-subtitle" class="completion-subtitle">I hope reading these brought a little smile to your
-        face.</p>
-      <p id="completion-message" class="completion-message">
-        You can look back at any of the notes whenever you feel like it.
-      </p>
-
-      <div class="completion-actions">
-        <button id="completion-browse-btn" class="btn-primary-large" type="button">
-          <span>Read Notes Again</span>
-        </button>
-        <button id="completion-replay-btn" class="btn-secondary" type="button"
-          style="justify-content: center; width: 100%;">
-          <span>Put Notes Back in the Jar</span>
-        </button>
-        <button id="completion-close-btn" class="btn-secondary" type="button"
-          style="justify-content: center; width: 100%;">
-          <span>Close</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
 
   <div id="confirm-modal-overlay" class="modal-overlay confirm-overlay hidden" role="dialog" aria-modal="true"
     aria-labelledby="confirm-modal-title">
     <div class="confirm-card">
-      <h3 id="confirm-modal-title" class="confirm-title">Put Notes Back in the Jar?</h3>
+      <h3 id="confirm-modal-title" class="confirm-title">Start over?</h3>
       <p id="confirm-modal-message" class="confirm-message">
-        This will fold all the notes back inside the jar so you can open them again from the beginning.
+        This will reset your reading progress so you can experience opening the notes again from the beginning.
       </p>
       <div class="confirm-actions">
         <button id="confirm-ok-btn" class="btn-card-close" type="button">
@@ -287,12 +114,11 @@
     </div>
   </div>
 
-
   <script src="js/notes.config.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/state.js"></script>
-  <script src="js/jar.js"></script>
+  <script src="js/cards.js"></script>
   <script src="js/notes.js"></script>
   <script src="js/app.js"></script>
 
