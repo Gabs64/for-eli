@@ -117,16 +117,7 @@
         this.notesContainer.appendChild(noteElem);
       });
 
-      if (count > 0) {
-        for (let i = 0; i < 3; i++) {
-          const sparkle = document.createElement("div");
-          sparkle.className = "jar-sparkle";
-          sparkle.style.left = `${25 + i * 25}%`;
-          sparkle.style.bottom = `${20 + i * 18}%`;
-          sparkle.style.animationDelay = `${i * 0.7}s`;
-          this.notesContainer.appendChild(sparkle);
-        }
-      }
+      
     },
 
     updateJarState: function () {

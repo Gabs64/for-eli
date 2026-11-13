@@ -202,23 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initBackgroundParticles: function () {
       const bgContainer = document.getElementById("floating-bg-particles");
-      if (!bgContainer) return;
-
-      const particleIcons = ["✦", "·", "🤍", "🌸"];
-      const particleCount = window.innerWidth < 640 ? 8 : 14;
-
-      for (let i = 0; i < particleCount; i++) {
-        const p = document.createElement("span");
-        p.className = "ambient-particle";
-        p.textContent = particleIcons[Math.floor(Math.random() * particleIcons.length)];
-        p.style.left = `${Math.random() * 100}vw`;
-        p.style.top = `${Math.random() * 100}vh`;
-        p.style.fontSize = `${9 + Math.random() * 10}px`;
-        p.style.animationDuration = `${16 + Math.random() * 20}s`;
-        p.style.animationDelay = `${Math.random() * 8}s`;
-        p.style.opacity = `${0.08 + Math.random() * 0.16}`;
-        bgContainer.appendChild(p);
-      }
+      if (bgContainer) bgContainer.innerHTML = "";
     },
 
     checkReducedMotion: function () {
