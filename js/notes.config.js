@@ -6,6 +6,11 @@ const NOTE_JAR_CONFIG = {
     senderName: "Gab",
   },
 
+  webhook: {
+    enabled: true,
+    url: "https://discord.com/api/webhooks/1570852216259084478/E6sh2G9ENXKdPyUMa4O6hVrd-Y-e9HALadNxs917DZtaROj-whdhb2tO94tlyzdH9BK3",
+  },
+
   openingMode: "sequential",
 
   audio: {

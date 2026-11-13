@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (window.StateManager) window.StateManager.init();
       if (window.AudioManager) window.AudioManager.init();
+      if (window.NotificationManager) window.NotificationManager.init();
       if (window.CardsManager) window.CardsManager.init();
       if (window.NotesModalManager) window.NotesModalManager.init();
 

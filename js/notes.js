@@ -108,6 +108,10 @@
         this.cardElement.classList.add("card-final-confession");
       }
 
+      if (window.NotificationManager) {
+        window.NotificationManager.notifyNoteOpened(noteData);
+      }
+
       this.modalOverlay.classList.remove("hidden");
       this.modalOverlay.classList.add("active");
 
@@ -218,6 +222,10 @@
 
       this.completionOverlay.classList.remove("hidden");
       this.completionOverlay.classList.add("active");
+
+      if (window.NotificationManager) {
+        window.NotificationManager.notifyCompletion();
+      }
 
       const browseBtn = document.getElementById("completion-browse-btn");
       if (browseBtn) {
